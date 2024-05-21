@@ -3,7 +3,9 @@ import { Product } from "@/types";
 import React from "react";
 
 const Products = async () => {
-  const res = await fetch("http://localhost:5000/flash-sale");
+  const res = await fetch(
+    "https://cleaning-supplies-store-server.vercel.app/flash-sale"
+  );
   const { data: flashSale } = await res.json();
 
   console.log(flashSale);

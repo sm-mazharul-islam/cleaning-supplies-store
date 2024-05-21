@@ -11,7 +11,9 @@ export const metadata = {
 };
 
 const FlashSale = async () => {
-  const res = await fetch("http://localhost:5000/flash-sale");
+  const res = await fetch(
+    "https://cleaning-supplies-store-server.vercel.app/flash-sale"
+  );
   const { data: flashSaleCleaningSupplies } = await res.json();
   console.log(flashSaleCleaningSupplies);
   // const flashSaleCleaningSupplies = [
