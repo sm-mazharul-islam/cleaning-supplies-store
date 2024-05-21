@@ -1,6 +1,7 @@
+import { Product } from "@/types";
 import Image from "next/image";
 
-const FlashSaleCard = ({ item }) => {
+const FlashSaleCard = ({ item }: { item: Product }) => {
   const { image, description, salePrice, originalPrice } = item;
   return (
     <div className="relative m-4">
