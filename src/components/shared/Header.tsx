@@ -11,6 +11,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import HeaderCard from "../ui/HeaderCard";
 import styles from "./Header.module.css";
 import Navbar from "./Navbar";
+import { THeader } from "@/types";
 const Header = () => {
   const clientReview = [
     {
@@ -99,7 +100,7 @@ const Header = () => {
         className="mySwiper max-w-[1100px] max-h-[400px] mx-auto mt-10 lg:mt-20 "
       >
         <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1440px] mx-auto ">
-          {clientReview.map((item) => (
+          {clientReview.map((item: THeader) => (
             <SwiperSlide className="swiper-slide1">
               <HeaderCard key={item.id} item={item}></HeaderCard>
             </SwiperSlide>

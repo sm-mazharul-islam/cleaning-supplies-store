@@ -11,3 +11,11 @@ export interface Product {
   brandCategory: string;
   description: string;
 }
+
+export interface THeader {
+  id: number;
+  name: string;
+  image: string;
+  description: string;
+  star: number;
+}

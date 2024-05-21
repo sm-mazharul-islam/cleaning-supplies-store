@@ -1,7 +1,7 @@
-import { Product } from "@/types";
+import { THeader } from "@/types";
 import Image from "next/image";
 
-const HeaderCard = ({ item }: { item: Product }) => {
+const HeaderCard = ({ item }: { item: THeader }) => {
   const { image, description } = item;
   return (
     <div className="relative m-4">
