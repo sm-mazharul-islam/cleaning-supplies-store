@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Link from "next/link";
 import React from "react";
 
@@ -15,6 +16,35 @@ const DashboardLayout = () => {
           <span className="text-neutral-700"> Open Dashboard Nav</span>
         </label>
         {/* <DashboardLayout /> */}
+        <h1 className="text-4xl border border-gray-200 p-[40px] shadow text-center font-bold text-gray-500">
+          Welcome To your Dashboard
+        </h1>
+        <p className="p-4 items-justify shadow m-[10px] lg:m-[50px]">
+          Welcome to your Command Center! You've arrived at the nerve center of
+          your digital domain, where insights converge and opportunities unfold.
+          This is your hub for navigating the intricacies of your online realm,
+          where data becomes your compass and decisions take flight. Perched at
+          this strategic juncture, you're granted access to a treasure trove of
+          information, thoughtfully organized and readily available at your
+          fingertips. Whether you're monitoring performance, tracking trends, or
+          delving into user behavior, your Command Center empowers you with the
+          tools to stay ahead of the curve. Positioned at the intersection of
+          strategy and action, your Command Center serves as the epicenter of
+          your operations. It's where ideas materialize, plans take shape, and
+          initiatives spring to life. With each interaction, you chart a course
+          toward your objectives, guided by the insights gleaned from your
+          Command Center's comprehensive analytics. Yet, your Command Center is
+          more than just a tool; it's a gateway to innovation. Here, you uncover
+          hidden gems, unveil untapped potential, and unlock pathways to
+          progress. It's where raw data transforms into actionable intelligence,
+          paving the way for triumphs and breakthroughs. So, as you navigate
+          your Command Center, remember that you're not merely observing data;
+          you're shaping destinies. Embrace the power of information, harness
+          the potential of analytics, and let your Command Center be your
+          steadfast companion on the journey to success. Welcome to your Command
+          Center – where opportunities abound, and every interaction propels you
+          closer to your aspirations.
+        </p>
       </div>
       <div className="drawer-side ">
         <label
@@ -44,31 +74,7 @@ const DashboardLayout = () => {
             </div>
           </li>
           <span className="divider"></span>
-          {/* <li>
-        <div className="flex gap-8">
-        <svg
-        className="w-[25px] "
-        fill="none"
-        strokeWidth="1.5"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        >
-        <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z"
-        ></path>
-        <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z"
-        ></path>
-        </svg>
-        <Link to="pie-chart">pie chart</Link>
-        </div>
-        </li>
-    <span className="divider"></span> */}
+
           <li>
             <div className="flex gap-8">
               <svg
@@ -90,26 +96,6 @@ const DashboardLayout = () => {
               <Link href="/dashboard/allSupply">All Supply</Link>
             </div>
           </li>
-          <span className="divider"></span>
-          {/* <li>
-        <div className="flex gap-8">
-        <svg
-        className="w-[25px] "
-        fill="none"
-        strokeWidth="1.5"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-        >
-        <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-        ></path>
-        </svg>
-        <Link to="create-supply">Add Supply</Link>
-        </div>
-    </li> */}
           <span className="divider"></span>
 
           <li className="mx-auto">
