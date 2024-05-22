@@ -2,11 +2,10 @@ import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
-const FlashSaleCard = ({ item }: { item: Product }) => {
-  const { image, salePrice, originalPrice } = item;
+const ProductCard = ({ item }: { item: Product }) => {
+  const { image, description, salePrice, originalPrice } = item;
   return (
     <div className="relative m-4">
-      {/* <Link href={`/flash-sale/${item.id}`}> */}
       <Image
         src={image}
         className="rounded-3xl w-[100%] h-[390px]"
@@ -49,12 +48,9 @@ const FlashSaleCard = ({ item }: { item: Product }) => {
             ></path>
           </svg>
         </div>
-        <Link href={`/flash-sale/${item._id}`}>
-          <button>see more</button>
-        </Link>
       </div>
     </div>
   );
 };
 
-export default FlashSaleCard;
+export default ProductCard;

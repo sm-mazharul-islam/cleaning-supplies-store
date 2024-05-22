@@ -1,5 +1,9 @@
+import Container from "@/components/shared/Container";
+import NavbarTwo from "@/components/shared/NavbarTwo";
 import FlashSaleCard from "@/components/ui/FlashSaleCard";
+import ProductCard from "@/components/ui/ProductsCard";
 import { Product } from "@/types";
+import Link from "next/link";
 import React from "react";
 
 const Products = async () => {
@@ -8,7 +12,7 @@ const Products = async () => {
   );
   const { data: flashSale } = await res.json();
 
-  console.log(flashSale);
+  // console.log(flashSale);
   // const cleaningSupplies = [
   //   {
   //     id: 1,
@@ -177,22 +181,23 @@ const Products = async () => {
   // ];
 
   return (
-    <div>
+    <Container>
+      <NavbarTwo />
       {/* <div className="lg:px-[150px]">
         <h1 className="text-4xl"></h1>
       </div> */}
       <div className="flex justify-between mt-[100px]">
         <div>
-          <h1 className="text-4xl font-bold ml-[10px] lg:ml-[170px] ">
+          <h1 className="text-4xl font-bold lg:ml-[350px]  ">
             Most Popular Products
           </h1>
-          <p className=" lg:ml-[170px] lg:w-[50%] ml-[10px]">
+          <p className="  lg:w-[50%] lg:ml-[350px]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit animi
             sit similique dicta reiciendis deleniti. Molestias recusandae
             consequuntur porro non.
           </p>
         </div>
-        <button className="btn btn-neutral lg:mr-[170px] rounded-full text-white mr-[10px] ">
+        {/* <button className="btn btn-neutral lg:mr-[170px] rounded-full text-white mr-[10px] ">
           View All
           <svg
             className="w-[30px]"
@@ -209,15 +214,135 @@ const Products = async () => {
               d="m8.25 4.5 7.5 7.5-7.5 7.5"
             ></path>
           </svg>
-        </button>
+        </button> */}
       </div>
+      <div className="grid ml-[50px] grid-rows-1 lg:grid-flow-col ">
+        <div className="border border-red-500 h-[800px] w-[300px] card ">
+          <h1 className="text-2xl font-bold text-center">Price Range</h1>
+          <div className="form-control p-10">
+            <label className="label cursor-pointer">
+              <input type="checkbox" defaultChecked className="checkbox" />
+              <span className="label-text font-bold  text-xl">
+                $20.00 - $50.00
+              </span>
+            </label>
+            <label className="label cursor-pointer">
+              <input type="checkbox" defaultChecked className="checkbox" />
+              <span className="label-text font-bold  text-xl">
+                $20.00 - $50.00
+              </span>
+            </label>
+            <label className="label cursor-pointer">
+              <input type="checkbox" defaultChecked className="checkbox" />
+              <span className="label-text font-bold  text-xl">
+                $20.00 - $50.00
+              </span>
+            </label>
+            <label className="label cursor-pointer">
+              <input type="checkbox" defaultChecked className="checkbox" />
+              <span className="label-text font-bold  text-xl">
+                $20.00 - $50.00
+              </span>
+            </label>
+          </div>
+          <span className="divider"></span>
+          <div>
+            <h1 className="text-2xl font-bold text-center">
+              Categories / Brands
+            </h1>
+            <ul className="menu  lg:ml-[50px]lg:menu-horizontal rounded-box ">
+              <li>
+                <details open>
+                  <summary>Parent item</summary>
+                  <ul className="justify-end items-end flex">
+                    <li>
+                      <a>Submenu 1</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+            <ul className="menu  lg:ml-[50px]lg:menu-horizontal rounded-box ">
+              <li>
+                <details open>
+                  <summary>Parent item</summary>
+                  <ul className="justify-end items-end flex">
+                    <li>
+                      <a>Submenu 1</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+            <ul className="menu  lg:ml-[50px]lg:menu-horizontal rounded-box ">
+              <li>
+                <details open>
+                  <summary>Parent item</summary>
+                  <ul className="justify-end items-end flex">
+                    <li>
+                      <a>Submenu 1</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+            <ul className="menu  lg:ml-[50px]lg:menu-horizontal rounded-box ">
+              <li>
+                <details open>
+                  <summary>Parent item</summary>
+                  <ul className="justify-end items-end flex">
+                    <li>
+                      <a>Submenu 1</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+            <ul className="menu  lg:ml-[50px]lg:menu-horizontal rounded-box ">
+              <li>
+                <details open>
+                  <summary>Parent item</summary>
+                  <ul className="justify-end items-end flex">
+                    <li>
+                      <a>Submenu 1</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+            <ul className="menu  lg:ml-[50px]lg:menu-horizontal rounded-box ">
+              <li>
+                <details open>
+                  <summary>Parent item</summary>
+                  <ul className="justify-end items-end flex">
+                    <li>
+                      <a>Submenu 1</a>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </div>
+          <h1>Hello</h1>
+          <h1>Hello</h1>
+          <h1>Hello</h1>
+          <h1>Hello</h1>
+          <h1>Hello</h1>
+          <h1>Hello</h1>
+          <h1>Hello</h1>
+          <h1>Hello</h1>
+          <h1>Hello</h1>
+          <h1>Hello</h1>
+          <h1>Hello</h1>
+        </div>
 
-      <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:ml-[150px] lg:mr-[150px] mx-auto">
-        {flashSale.map((item: Product) => (
-          <FlashSaleCard key={item._id} item={item}></FlashSaleCard>
-        ))}
+        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:ml-[150px]  mx-auto">
+          {flashSale.map((item: Product) => (
+            <ProductCard key={item._id} item={item}></ProductCard>
+          ))}
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

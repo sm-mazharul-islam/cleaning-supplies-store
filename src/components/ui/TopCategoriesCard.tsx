@@ -18,7 +18,7 @@ const TopCategoriesCard = () => {
               className="h-[530px] rounded-3xl lg:w-[350px] "
               width={500}
               height={500}
-              src="https://img.freepik.com/free-photo/beautiful-woman-street_23-2147654273.jpg"
+              src="https://natura-sciences.com/wp-content/uploads/2013/11/produits-d-entretien.jpg"
               alt=""
             ></Image>
             <div className=" absolute top-0 left-0 text-center mt-5">
@@ -38,7 +38,7 @@ const TopCategoriesCard = () => {
               className="w-[400px]  rounded-3xl"
               width={500}
               height={300}
-              src="https://img.freepik.com/free-photo/beautiful-woman-street_23-2147654273.jpg"
+              src="https://natura-sciences.com/wp-content/uploads/2013/11/produits-d-entretien.jpg"
               alt=""
             ></Image>
             <div className=" absolute top-0 left-0 text-center mt-5">
@@ -66,7 +66,7 @@ const TopCategoriesCard = () => {
               className="w-[400px]  rounded-3xl"
               width={500}
               height={300}
-              src="https://img.freepik.com/free-photo/beautiful-woman-street_23-2147654273.jpg"
+              src="https://natura-sciences.com/wp-content/uploads/2013/11/produits-d-entretien.jpg"
               alt=""
             ></Image>
             <div className=" absolute top-0 left-0 text-center mt-5">
@@ -93,7 +93,7 @@ const TopCategoriesCard = () => {
               className="h-[530px] rounded-3xl lg:w-[350px] "
               width={500}
               height={500}
-              src="https://img.freepik.com/free-photo/beautiful-woman-street_23-2147654273.jpg"
+              src="https://natura-sciences.com/wp-content/uploads/2013/11/produits-d-entretien.jpg"
               alt=""
             ></Image>
             <div className=" absolute top-0 left-0 text-center mt-5">

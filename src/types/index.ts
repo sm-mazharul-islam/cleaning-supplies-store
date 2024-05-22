@@ -1,12 +1,13 @@
 export interface Product {
   _id: string;
   image: string;
-  imageTwo: string;
-  imageThree: string;
-  imageFour: string;
+  image1?: string;
+  image2?: string;
+  image3?: string;
   title: string;
   originalPrice: number;
   salePrice: number;
+  logo?: string;
   ratings: number;
   brandCategory: string;
   description: string;

@@ -57,6 +57,9 @@ const Navbar = () => {
             <li>
               <Link href="contactus">Contact Us</Link>
             </li>
+            <li>
+              <Link href="dashboard">Dashboard</Link>
+            </li>
           </ul>
         </div>
         {/* <a className="btn btn-ghost text-xl lg:ml-[100px]">daisyUI</a> */}
@@ -68,7 +71,7 @@ const Navbar = () => {
           alt="logo1"
         />
       </div>
-      <div className="navbar-center hidden lg:flex lg:mr-[350px] text-white ">
+      <div className="navbar-center hidden lg:flex lg:mr-[250px] text-white ">
         <ul className="menu menu-horizontal px-1 text-xl">
           <li>
             <Link href="/">Home</Link>
@@ -88,6 +91,9 @@ const Navbar = () => {
           <li>
             <Link href="/contactus">Contact Us</Link>
           </li>
+          <li>
+            <Link href="/dashboard">Dashboard</Link>
+          </li>
         </ul>
       </div>
       {/* <div className="navbar-end">
@@ -98,4 +104,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

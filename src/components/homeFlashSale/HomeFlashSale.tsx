@@ -1,6 +1,5 @@
 import Link from "next/link";
 import FlashSaleCard from "../ui/FlashSaleCard";
-import { Key } from "react";
 import { Product } from "@/types";
 
 const HomeFlashSale = async () => {
@@ -8,7 +7,7 @@ const HomeFlashSale = async () => {
     "https://cleaning-supplies-store-server.vercel.app/flash-sale"
   );
   const { data: flashSaleSupplies } = await res.json();
-  console.log(flashSaleSupplies);
+  // console.log(flashSaleSupplies);
 
   //   const flashSaleCleaningSupplies = [
   //     {
@@ -282,7 +281,7 @@ const HomeFlashSale = async () => {
       </div>
       <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:ml-[150px] lg:mr-[150px] mx-auto ">
         {flashSaleSupplies.slice(0, 4).map((item: Product) => (
-          <FlashSaleCard key={item._id} item={item}></FlashSaleCard>
+          <FlashSaleCard key={item.id} item={item}></FlashSaleCard>
         ))}
       </div>
     </div>

@@ -56,6 +56,9 @@ const NavbarTwo = () => {
             <li>
               <Link href="contactus">Contact Us</Link>
             </li>
+            <li>
+              <Link href="dashboard">Dashboard</Link>
+            </li>
           </ul>
         </div>
         {/* <a className="btn btn-ghost text-xl lg:ml-[100px]">daisyUI</a> */}
@@ -86,6 +89,9 @@ const NavbarTwo = () => {
           </li>
           <li>
             <Link href="/contactus">Contact Us</Link>
+          </li>
+          <li>
+            <Link href="/dashboard">Dashboard</Link>
           </li>
         </ul>
       </div>
