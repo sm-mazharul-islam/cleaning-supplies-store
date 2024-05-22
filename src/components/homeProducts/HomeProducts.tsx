@@ -1,6 +1,6 @@
 import Container from "@/components/shared/Container";
 import NavbarTwo from "@/components/shared/NavbarTwo";
-import { Product } from "@/types";
+import { Product, TProduct } from "@/types";
 import Link from "next/link";
 import React from "react";
 import FlashSaleCard from "../ui/FlashSaleCard";
@@ -8,7 +8,7 @@ import ProductCard from "../ui/ProductsCard";
 
 const HomeProducts = async () => {
   const res = await fetch(
-    "https://cleaning-supplies-store-server.vercel.app/flash-sale"
+    "https://cleaning-supplies-store-server.vercel.app/products"
   );
   const { data: homeProducts } = await res.json();
 
@@ -23,13 +23,13 @@ const HomeProducts = async () => {
             Most Popular Products
           </h1>
           <p className="lg:ml-[170px]  lg:w-[50%] ml-[10px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit animi
-            sit similique dicta reiciendis deleniti. Molestias recusandae
-            consequuntur porro non.
+            Protect your home from harmful germs and bacteria with GermGuard
+            Disinfectant Spray. This powerful disinfectant kills 99.9% of
+            viruses and bacteria on contact, ensuring a hygienic environment.
           </p>
         </div>
         <Link href="/products" className="flex justify-between">
-          <button className="btn  btn-neutral lg:mr-[170px] rounded-full text-white mr-[10px] ">
+          <button className="btn  btn-neutral lg:mr-[170px] rounded-full text-white pr-[10px] ">
             View All
             <svg
               className="w-[30px]"
@@ -51,7 +51,7 @@ const HomeProducts = async () => {
       </div>
       <div>
         <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:ml-[100px] lg:mr-[150px]  mx-auto">
-          {homeProducts.slice(0, 8).map((item: Product) => (
+          {homeProducts.slice(0, 8).map((item: TProduct) => (
             <ProductCard key={item._id} item={item}></ProductCard>
           ))}
         </div>

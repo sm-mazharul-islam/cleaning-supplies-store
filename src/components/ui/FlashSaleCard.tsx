@@ -1,11 +1,10 @@
 import { Product } from "@/types";
 import Image from "next/image";
-import Link from "next/link";
 
 const FlashSaleCard = ({ item }: { item: Product }) => {
-  const { image, salePrice, originalPrice } = item;
+  const { image, title, salePrice, originalPrice } = item;
   return (
-    <div className="relative m-4">
+    <div className="relative m-4 card shadow p-2">
       {/* <Link href={`/flash-sale/${item.id}`}> */}
       <Image
         src={image}
@@ -23,7 +22,7 @@ const FlashSaleCard = ({ item }: { item: Product }) => {
           </button> */}
       </div>
       <div className=" ml-2 ">
-        <h1 className="text-2xl  mb-2">If a dog chews shoes</h1>
+        <h1 className="text-xl  mb-2">{title}</h1>
 
         <div className="card-actions justify-between">
           <div className="card-actions  justify-start text-center">
@@ -49,9 +48,6 @@ const FlashSaleCard = ({ item }: { item: Product }) => {
             ></path>
           </svg>
         </div>
-        <Link href={`/flash-sale/${item._id}`}>
-          <button>see more</button>
-        </Link>
       </div>
     </div>
   );

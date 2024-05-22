@@ -20,3 +20,15 @@ export interface THeader {
   description: string;
   star: number;
 }
+
+export interface TProduct {
+  _id: string;
+  image: string;
+  title: string;
+  description: string;
+  brand: string;
+  rating: number;
+  originalPrice: number;
+  salePrice: number;
+  longDescription: string;
+}

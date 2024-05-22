@@ -2,7 +2,7 @@ import { THeader } from "@/types";
 import Image from "next/image";
 
 const HeaderCard = ({ item }: { item: THeader }) => {
-  const { image, description } = item;
+  const { image, description, name } = item;
   return (
     <div className="relative m-4">
       <Image
@@ -21,7 +21,7 @@ const HeaderCard = ({ item }: { item: THeader }) => {
           </button> */}
       </div>
       <div className=" ml-2 ">
-        <h1 className="text-2xl text-white mb-2">If a dog chews shoes</h1>
+        <h1 className="text-2xl text-white mb-2">{name}</h1>
 
         <div className="card-actions justify-between">
           <div className="card-actions  justify-start text-center">

@@ -16,27 +16,27 @@ const Header = () => {
   const clientReview = [
     {
       id: 1,
-      name: "Ava",
+      name: "House Cleaning",
       image:
-        "https://media.istockphoto.com/id/1135381120/photo/portrait-of-a-young-woman-outdoors-smiling.jpg?s=612x612&w=0&k=20&c=T5dukPD1r-o0BFqeqlIap7xzw07icucetwKaEC2Ms5M=",
+        "https://themes.envytheme.com/rivsy/wp-content/uploads/2022/03/banner-1.jpg",
       description:
         " a statement or account giving the characteristics of someone or something ",
       star: 4,
     },
     {
       id: 2,
-      name: "Mila",
+      name: "Office Cleaning",
       image:
-        "https://media.istockphoto.com/id/1961059691/photo/testimonial-portrait-of-a-mature-mexican-woman.webp?b=1&s=170667a&w=0&k=20&c=zvJlGaVQoQL7FZ1UhXRIsOuil6gyB6bUVorAjHpHj6E=",
+        "https://themes.envytheme.com/rivsy/wp-content/uploads/2022/03/banner-3.jpg",
       description:
         " a statement or account giving the characteristics of someone or something ",
       star: 4,
     },
     {
       id: 3,
-      name: "Ava",
+      name: "windows Cleaning",
       image:
-        "https://media.istockphoto.com/id/1135381120/photo/portrait-of-a-young-woman-outdoors-smiling.jpg?s=612x612&w=0&k=20&c=T5dukPD1r-o0BFqeqlIap7xzw07icucetwKaEC2Ms5M=",
+        "https://themes.envytheme.com/rivsy/wp-content/uploads/2022/03/banner-2.jpg",
       description:
         " a statement or account giving the characteristics of someone or something ",
 
@@ -44,9 +44,9 @@ const Header = () => {
     },
     {
       id: 6,
-      name: "Mila",
+      name: "Plumbing Service",
       image:
-        "https://media.istockphoto.com/id/1961059691/photo/testimonial-portrait-of-a-mature-mexican-woman.webp?b=1&s=170667a&w=0&k=20&c=zvJlGaVQoQL7FZ1UhXRIsOuil6gyB6bUVorAjHpHj6E=",
+        "https://themes.envytheme.com/rivsy/wp-content/uploads/2022/03/banner-4.jpg",
       description:
         " a statement or account giving the characteristics of someone or something ",
       star: 4,
@@ -58,13 +58,13 @@ const Header = () => {
       <Navbar />
       {/* <h1>This is Header</h1> */}
       <h1 className="text-center text-4xl font-bold text-white lg:mt-[60px]">
-        Crafting Comfort, Redefining Spaces. <br /> Your Home, Your Signature
-        Style!
+        {/* Dive into the joy of a spotless space and let our cleaning supplies be
+        your trusted companion on the journey to a brighter, more vibrant life. */}
+        Elevate your cleaning routine today!
       </h1>
       <p className="text-center text-xl mt-4 text-gray-200  lg:w-[40%] mx-auto">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam tenetur
-        exercitationem adipisci ipsam ipsum neque deleniti enim voluptas
-        voluptate officia assumenda, eius ab, ullam labore? Perferendis at
+        Remember, behind every clean space is your dedication and effort,
+        turning mundane chores into acts of pride and accomplishment!
       </p>
       <Swiper
         loop={true}

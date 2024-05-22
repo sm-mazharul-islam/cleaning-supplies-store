@@ -31,32 +31,14 @@ const Navbar = () => {
             <li>
               <Link href="/">Home</Link>
             </li>
-            {/* <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li> */}
-            <li>
-              <Link href="categories">Categories</Link>
-            </li>
+
             <li>
               <Link href="products">Products</Link>
             </li>
             <li>
               <Link href="flashsale">Flash Sale</Link>
             </li>
-            <li>
-              <Link href="aboutus">About Us</Link>
-            </li>
-            <li>
-              <Link href="contactus">Contact Us</Link>
-            </li>
+
             <li>
               <Link href="dashboard">Dashboard</Link>
             </li>
@@ -76,21 +58,14 @@ const Navbar = () => {
           <li>
             <Link href="/">Home</Link>
           </li>
-          <li>
-            <Link href="/categories">Categories</Link>
-          </li>
+
           <li>
             <Link href="/products">Products</Link>
           </li>
           <li>
             <Link href="/flashsale">Flash Sale</Link>
           </li>
-          <li>
-            <Link href="/aboutus">About Us</Link>
-          </li>
-          <li>
-            <Link href="/contactus">Contact Us</Link>
-          </li>
+
           <li>
             <Link href="/dashboard">Dashboard</Link>
           </li>

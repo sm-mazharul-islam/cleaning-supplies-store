@@ -1,11 +1,11 @@
-import { Product } from "@/types";
+import { TProduct } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
-const ProductCard = ({ item }: { item: Product }) => {
-  const { image, description, salePrice, originalPrice } = item;
+const ProductCard = ({ item }: { item: TProduct }) => {
+  const { image, title, description, salePrice, originalPrice } = item;
   return (
-    <div className="relative m-4">
+    <div className="relative m-4 card shadow p-2">
       <Image
         src={image}
         className="rounded-3xl w-[100%] h-[390px]"
@@ -22,7 +22,7 @@ const ProductCard = ({ item }: { item: Product }) => {
           </button> */}
       </div>
       <div className=" ml-2 ">
-        <h1 className="text-2xl  mb-2">If a dog chews shoes</h1>
+        <h1 className="text-xl  mb-2">{title}</h1>
 
         <div className="card-actions justify-between">
           <div className="card-actions  justify-start text-center">
@@ -49,6 +49,9 @@ const ProductCard = ({ item }: { item: Product }) => {
           </svg>
         </div>
       </div>
+      <Link href={`/products/${item._id}`}>
+        <button className="ml-[100px]">see more</button>
+      </Link>
     </div>
   );
 };
