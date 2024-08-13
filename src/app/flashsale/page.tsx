@@ -15,7 +15,7 @@ const FlashSale = async () => {
     "https://cleaning-supplies-store-server.vercel.app/flash-sale"
   );
   const { data: flashSaleCleaningSupplies } = await res.json();
-  console.log(flashSaleCleaningSupplies);
+  // console.log(flashSaleCleaningSupplies);
   // console.log(flashSaleCleaningSupplies);
 
   return (

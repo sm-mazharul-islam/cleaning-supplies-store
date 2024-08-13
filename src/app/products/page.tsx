@@ -40,13 +40,15 @@ const Products: React.FC = () => {
 
   const fetchProducts = async () => {
     const res = await fetch(
-      `http://localhost:5000/products?${new URLSearchParams({
-        brand: filters.brand.join(","),
-        salePrice: filters.priceRange.join(","),
-        rating: filters.rating.join(","),
-        page: page.toString(),
-        limit: "10", // Set your desired limit per page
-      })}`
+      `https://cleaning-supplies-store-server.vercel.app/products?${new URLSearchParams(
+        {
+          brand: filters.brand.join(","),
+          salePrice: filters.priceRange.join(","),
+          rating: filters.rating.join(","),
+          page: page.toString(),
+          limit: "10", // Set your desired limit per page
+        }
+      )}`
     );
     const { data, total }: ApiResponse = await res.json();
     setProducts(data);
@@ -55,6 +57,7 @@ const Products: React.FC = () => {
 
   useEffect(() => {
     fetchProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, page]);
 
   const handleFilterChange = (newFilters: Filters) => {

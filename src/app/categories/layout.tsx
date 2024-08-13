@@ -1,6 +1,5 @@
 import Container from "@/components/shared/Container";
 import CategoryList from "@/components/ui/CategoryList/CategoryList";
-import React from "react";
 
 const CategoriesLayout = ({ children }: { children: string }) => {
   return (
