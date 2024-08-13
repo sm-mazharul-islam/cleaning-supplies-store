@@ -1,10 +1,11 @@
 import Container from "@/components/shared/Container";
 import { TProduct } from "@/types";
-import Link from "next/link";
 import React from "react";
 
 const AllSupply = async () => {
-  const res = await fetch("http://localhost:5000/products");
+  const res = await fetch(
+    "https://cleaning-supplies-store-server.vercel.app/products"
+  );
   const { data: allSupply } = await res.json();
   return (
     <Container>
