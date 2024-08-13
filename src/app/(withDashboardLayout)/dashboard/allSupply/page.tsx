@@ -4,14 +4,12 @@ import Link from "next/link";
 import React from "react";
 
 const AllSupply = async () => {
-  const res = await fetch(
-    "https://cleaning-supplies-store-server.vercel.app/products"
-  );
+  const res = await fetch("http://localhost:5000/products");
   const { data: allSupply } = await res.json();
   return (
     <Container>
-      <div className=" p-5 lg:w-[1300px] lg:h-full  lg:mt-[150px] mx-auto">
-        <div className="overflow-auto rounded-lg shadow hidden md:block">
+      <div className=" p-5 lg:w-[1300px]  lg:mt-[50px] mx-auto">
+        <div className="overflow-auto rounded-lg shadow hidden md:block ">
           <table className=" w-full">
             <thead>
               <tr className="text-2xl">
@@ -26,22 +24,22 @@ const AllSupply = async () => {
             </thead>
             <tbody className="divide-y divide-gray-100 text-xl">
               {allSupply?.map((item: TProduct) => (
-                <tr key={item._id}>
-                  <td className="whitespace-nowrap text-center">
+                <tr key={item._id} className="border">
+                  <td className="whitespace-nowrap text-justify border ">
                     {item.title}
                   </td>
-                  <td className="whitespace-nowrap text-center">
+                  <td className="whitespace-nowrap text-center border">
                     {item.brand}
                   </td>
-                  <td className="whitespace-nowrap text-center">
+                  <td className="whitespace-nowrap text-center border">
                     <span className="font-bold">$</span>
                     {item.originalPrice}
                   </td>
-                  <td className="whitespace-nowrap text-center">
+                  <td className="whitespace-nowrap text-center border">
                     <span className="font-bold">$</span>
                     {item.salePrice}
                   </td>
-                  <td className="whitespace-nowrap text-center">
+                  <td className="whitespace-nowrap text-center border">
                     <button>
                       <svg
                         className="w-[25px] text-purple-500"
@@ -59,7 +57,7 @@ const AllSupply = async () => {
                       </svg>
                     </button>
                   </td>
-                  <td className="whitespace-nowrap text-center">
+                  <td className="whitespace-nowrap text-center border">
                     <button>
                       <svg
                         className="w-[25px] text-red-500"
@@ -105,11 +103,13 @@ const AllSupply = async () => {
 
               <div className="flex items-center space-x-2 text-sm">
                 <div>
-                  <button className=" p-[3px]">Edit</button>
+                  <button className=" p-[3px] border bg-blue-500 text-white">
+                    Edit
+                  </button>
                 </div>
 
                 <div>
-                  <button className="ml-[240px] p-[4px] border border-red-500 bg-red-800 text-white">
+                  <button className="ml-[170px] p-[4px] border border-red-500 bg-red-800 text-white">
                     Del
                   </button>
                 </div>
@@ -118,7 +118,7 @@ const AllSupply = async () => {
           ))}
         </div>
       </div>
-      <Link href="/" className="flex gap-8">
+      {/* <Link href="/" className="flex gap-8">
         <svg
           className="w-[35px] text-indigo-400 mx-auto shadow border border-gray-100 "
           fill="none"
@@ -133,9 +133,19 @@ const AllSupply = async () => {
             d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
           ></path>
         </svg>
-      </Link>
+      </Link> */}
     </Container>
   );
 };
 
 export default AllSupply;
+
+// const AllSupply = () => {
+//   return (
+//     <div>
+//       <h1>All Supply Page</h1>
+//     </div>
+//   );
+// };
+
+// export default AllSupply;

@@ -17,19 +17,22 @@ const HomeProducts = async () => {
       {/* <div className="lg:px-[150px]">
         <h1 className="text-4xl"></h1>
       </div> */}
-      <div className="flex justify-between mt-[100px]">
-        <div>
-          <h1 className="lg:ml-[170px] text-4xl font-bold ml-[10px]  ">
+      <div className="lg:flex lg:justify-between mt-[100px]">
+        <div className="m-4 lg:m-0">
+          <h1 className="lg:ml-[130px] text-4xl font-bold ml-[10px]  ">
             Most Popular Products
           </h1>
-          <p className="lg:ml-[170px]  lg:w-[50%] ml-[10px]">
+          <p className="lg:ml-[130px]  lg:w-[50%] ml-[10px] lg:text-justify">
             Protect your home from harmful germs and bacteria with GermGuard
             Disinfectant Spray. This powerful disinfectant kills 99.9% of
             viruses and bacteria on contact, ensuring a hygienic environment.
           </p>
         </div>
-        <Link href="/products" className="flex justify-between">
-          <button className="btn  btn-neutral lg:mr-[170px] rounded-full text-white pr-[10px] ">
+        <Link
+          href="/products"
+          className="lg:flex lg:justify-between m-6 lg:m-0"
+        >
+          <button className="btn  btn-neutral lg:mr-[230px] rounded-full text-white pr-[10px] ">
             View All
             <svg
               className="w-[30px]"

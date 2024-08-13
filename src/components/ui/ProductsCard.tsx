@@ -5,10 +5,10 @@ import Link from "next/link";
 const ProductCard = ({ item }: { item: TProduct }) => {
   const { image, title, description, salePrice, originalPrice } = item;
   return (
-    <div className="relative m-4 card shadow p-2">
+    <div className="relative m-2 card shadow p-2">
       <Image
         src={image}
-        className="rounded-3xl w-[100%] h-[390px]"
+        className="rounded-3xl w-[100%] h-[300px]"
         width={500}
         height={500}
         alt="headerImage"
@@ -49,8 +49,8 @@ const ProductCard = ({ item }: { item: TProduct }) => {
           </svg>
         </div>
       </div>
-      <Link href={`/products/${item._id}`}>
-        <button className="ml-[100px]">see more</button>
+      <Link href={`/products/${item._id}`} className="text-center mt-auto">
+        <button>see more</button>
       </Link>
     </div>
   );

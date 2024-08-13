@@ -17,7 +17,7 @@ const DetailPage = async ({ params }: PId) => {
     }
   );
   const item = await res.json();
-  console.log(item);
+  // console.log(item);
   return (
     <div>
       <Container>
