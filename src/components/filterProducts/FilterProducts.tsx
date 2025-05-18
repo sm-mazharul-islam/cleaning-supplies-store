@@ -118,7 +118,7 @@ export interface Filters {
   priceRange: string[];
   brand: string[];
   rating: number[];
-  searchQuery: string;
+  searchQuery?: string;
 }
 
 interface FilterProductsProps {
