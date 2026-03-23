@@ -275,8 +275,8 @@ const DetailCard = ({ item }: { item: TProduct }) => {
                 Join the Discussion
               </h3>
               <p className="text-slate-500 mb-6 max-w-md mx-auto">
-                You must be logged in to post a comment or reply to this
-                product's community discussion.
+                You must be logged in to post a comment or reply to this product
+                community discussion.
               </p>
               <Link
                 href="/login"
