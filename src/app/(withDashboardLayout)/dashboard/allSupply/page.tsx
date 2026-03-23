@@ -1,152 +1,130 @@
 import Container from "@/components/shared/Container";
 import { TProduct } from "@/types";
 import React from "react";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 const AllSupply = async () => {
   const res = await fetch(
-    "https://cleaning-supplies-store-server.vercel.app/products"
+    `${process.env.NEXT_PUBLIC_API_URL}/products`,
+    { cache: "no-store" }, // Ensure fresh data
   );
   const { data: allSupply } = await res.json();
+
   return (
     <Container>
-      <div className=" p-5 lg:w-[1300px]  lg:mt-[50px] mx-auto">
-        <div className="overflow-auto rounded-lg shadow hidden md:block ">
-          <table className=" w-full">
-            <thead>
-              <tr className="text-2xl">
-                <th className="w-20 text-center">Title</th>
-                <th className="text-center">Brand</th>
-                <th className="w-24 text-center">Price</th>
+      <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+        {/* Header Section */}
+        <div className="sm:flex sm:items-center mb-8">
+          <div className="sm:flex-auto">
+            <h1 className="text-2xl font-semibold text-slate-900">Inventory</h1>
+            <p className="mt-2 text-sm text-slate-600">
+              A list of all cleaning supplies including brand, pricing, and
+              availability.
+            </p>
+          </div>
+          <div className="mt-4 sm:ml-16 sm:mt-0">
+            <button className="block rounded-lg bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-500 transition-colors">
+              Add Product
+            </button>
+          </div>
+        </div>
 
-                <th className="w-32 text-center">Sale Price</th>
-                <th className="w-24 text-center">Edit</th>
-                <th className="w-32 text-center">Delete</th>
+        {/* Desktop Table */}
+        <div className="hidden md:block overflow-hidden shadow-sm border border-slate-200 rounded-xl bg-white">
+          <table className="min-w-full divide-y divide-slate-200">
+            <thead className="bg-slate-50">
+              <tr>
+                <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-500">
+                  Product Title
+                </th>
+                <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-500">
+                  Brand
+                </th>
+                <th className="px-6 py-4 text-center text-xs font-bold uppercase tracking-wider text-slate-500">
+                  Retail Price
+                </th>
+                <th className="px-6 py-4 text-center text-xs font-bold uppercase tracking-wider text-slate-500">
+                  Sale Price
+                </th>
+                <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider text-slate-500">
+                  Actions
+                </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100 text-xl">
+            <tbody className="divide-y divide-slate-200 bg-white">
               {allSupply?.map((item: TProduct) => (
-                <tr key={item._id} className="border">
-                  <td className="whitespace-nowrap text-justify border ">
-                    {item.title}
+                <tr
+                  key={item._id}
+                  className="hover:bg-slate-50/80 transition-colors group"
+                >
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm font-medium text-slate-900">
+                      {item.title}
+                    </div>
                   </td>
-                  <td className="whitespace-nowrap text-center border">
-                    {item.brand}
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-800">
+                      {item.brand}
+                    </span>
                   </td>
-                  <td className="whitespace-nowrap text-center border">
-                    <span className="font-bold">$</span>
-                    {item.originalPrice}
+                  <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-slate-500 italic line-through">
+                    ${item.originalPrice}
                   </td>
-                  <td className="whitespace-nowrap text-center border">
-                    <span className="font-bold">$</span>
-                    {item.salePrice}
+                  <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-semibold text-blue-600">
+                    ${item.salePrice}
                   </td>
-                  <td className="whitespace-nowrap text-center border">
-                    <button>
-                      <svg
-                        className="w-[25px] text-purple-500"
-                        fill="none"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-                        ></path>
-                      </svg>
-                    </button>
-                  </td>
-                  <td className="whitespace-nowrap text-center border">
-                    <button>
-                      <svg
-                        className="w-[25px] text-red-500"
-                        fill="none"
-                        strokeWidth="1.5"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
-                        ></path>
-                      </svg>
-                    </button>
+                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <div className="flex justify-end gap-3">
+                      <button className="text-slate-400 hover:text-blue-600 transition-colors p-1">
+                        <FaEdit size={18} />
+                      </button>
+                      <button className="text-slate-400 hover:text-red-600 transition-colors p-1">
+                        <FaTrashAlt size={16} />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden ">
+
+        {/* Mobile Grid View */}
+        <div className="grid grid-cols-1 gap-4 md:hidden">
           {allSupply?.map((item: TProduct) => (
             <div
-              className="bg-white space-y-3 p-4 rounded-lg shadow"
               key={item._id}
+              className="bg-white p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col gap-3"
             >
-              <div className=" space-x-2 text-sm">
-                <div></div>
-
-                <div className=" text-gray-500">
-                  <p className="text-center">Title: {item.title}</p>
-                </div>
-                {/* <div>...</div> */}
-              </div>
-              <div className="text-sm text-gray-700">
-                <p className="text-center">Brand : {item.brand}</p>
-              </div>
-              <div className="text-center text-sm font-medium text-black">
-                total: {item.salePrice}
-              </div>
-
-              <div className="flex items-center space-x-2 text-sm">
+              <div className="flex justify-between items-start">
                 <div>
-                  <button className=" p-[3px] border bg-blue-500 text-white">
-                    Edit
-                  </button>
+                  <h3 className="font-bold text-slate-900">{item.title}</h3>
+                  <p className="text-xs text-slate-500">{item.brand}</p>
                 </div>
+                <div className="text-right">
+                  <p className="text-sm font-bold text-blue-600">
+                    ${item.salePrice}
+                  </p>
+                  <p className="text-[10px] text-slate-400 line-through">
+                    ${item.originalPrice}
+                  </p>
+                </div>
+              </div>
 
-                <div>
-                  <button className="ml-[170px] p-[4px] border border-red-500 bg-red-800 text-white">
-                    Del
-                  </button>
-                </div>
+              <div className="flex gap-2 pt-2 border-t border-slate-100">
+                <button className="flex-1 flex items-center justify-center gap-2 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-100">
+                  <FaEdit className="text-blue-500" /> Edit
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-2 py-2 bg-red-50 text-red-600 rounded-lg text-sm font-medium hover:bg-red-100">
+                  <FaTrashAlt /> Delete
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
-      {/* <Link href="/" className="flex gap-8">
-        <svg
-          className="w-[35px] text-indigo-400 mx-auto shadow border border-gray-100 "
-          fill="none"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
-          ></path>
-        </svg>
-      </Link> */}
     </Container>
   );
 };
 
 export default AllSupply;
-
-// const AllSupply = () => {
-//   return (
-//     <div>
-//       <h1>All Supply Page</h1>
-//     </div>
-//   );
-// };
-
-// export default AllSupply;

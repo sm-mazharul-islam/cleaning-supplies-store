@@ -40,15 +40,13 @@ const Products: React.FC = () => {
 
   const fetchProducts = async () => {
     const res = await fetch(
-      `https://cleaning-supplies-store-server.vercel.app/products?${new URLSearchParams(
-        {
-          brand: filters.brand.join(","),
-          salePrice: filters.priceRange.join(","),
-          rating: filters.rating.join(","),
-          page: page.toString(),
-          limit: "10", // Set your desired limit per page
-        }
-      )}`
+      `${process.env.NEXT_PUBLIC_API_URL}/products?${new URLSearchParams({
+        brand: filters.brand.join(","),
+        salePrice: filters.priceRange.join(","),
+        rating: filters.rating.join(","),
+        page: page.toString(),
+        limit: "10", // Set your desired limit per page
+      })}`,
     );
     const { data, total }: ApiResponse = await res.json();
     setProducts(data);

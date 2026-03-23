@@ -31,4 +31,6 @@ export interface TProduct {
   originalPrice: number;
   salePrice: number;
   longDescription: string;
+  logo?: string;
+  ratings?: number; // Average user rating (e.g., 4.8)
 }

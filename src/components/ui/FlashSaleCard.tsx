@@ -1,52 +1,68 @@
-import { Product } from "@/types";
+import { TProduct } from "@/types"; // Consistency with previous types
 import Image from "next/image";
+import Link from "next/link";
+import { FaPlusCircle } from "react-icons/fa";
 
-const FlashSaleCard = ({ item }: { item: Product }) => {
-  const { image, title, salePrice, originalPrice } = item;
+const FlashSaleCard = ({ item }: { item: TProduct }) => {
+  const { _id, image, title, salePrice, originalPrice } = item;
+
+  // Calculate discount percentage dynamically
+  const discount = Math.round(
+    ((originalPrice - salePrice) / originalPrice) * 100,
+  );
+
   return (
-    <div className="relative m-4 card shadow p-2">
-      {/* <Link href={`/flash-sale/${item.id}`}> */}
-      <Image
-        src={image}
-        className="rounded-3xl w-[100%] h-[390px]"
-        width={500}
-        height={500}
-        alt="headerImage"
-      />
-      <div className=" absolute top-0 left-0 text-center mt-5">
-        <h2 className="text-md ml-4 p-3 text-white text-start badge badge-neutral">
-          -13%
-        </h2>
-        {/* <button className="mt-10 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Test Button
-          </button> */}
-      </div>
-      <div className=" ml-2 ">
-        <h1 className="text-xl  mb-2">{title}</h1>
+    <div className="group relative bg-white rounded-3xl p-3 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 m-4">
+      <Link href={`/flashsale/${_id}`}>
+        {/* Image Container */}
+        <div className="relative overflow-hidden rounded-2xl aspect-[4/5] bg-slate-100">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+          />
 
-        <div className="card-actions justify-between">
-          <div className="card-actions  justify-start text-center">
-            <del className="text-md text-gray-500">${originalPrice}</del>
-            <p className="text-md font-bold"> ${salePrice}</p>
+          {/* Dynamic Discount Badge */}
+          <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+            -{discount}% OFF
           </div>
 
-          {/* <button className="btn btn-primary">Buy Now</button> */}
-          <svg
-            className="w-[35px]"
-            //   data-slot="icon"
-            fill="none"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-            //   aria-hidden="true"
+          {/* Quick View Overlay (Shows on Hover) */}
+          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <span className="bg-white text-slate-900 px-4 py-2 rounded-full text-sm font-bold shadow-xl translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+              View Details
+            </span>
+          </div>
+        </div>
+      </Link>
+
+      {/* Content Section */}
+      <div className="mt-4 px-2 pb-2">
+        <h3
+          className="text-lg font-bold text-slate-800 truncate mb-1"
+          title={title}
+        >
+          {title}
+        </h3>
+
+        <div className="flex items-center justify-between mt-3">
+          <div className="flex flex-col">
+            <span className="text-xs text-slate-400 line-through font-medium">
+              ${originalPrice}
+            </span>
+            <span className="text-xl font-black text-blue-600">
+              ${salePrice}
+            </span>
+          </div>
+
+          {/* Add to Cart Icon Button */}
+          <button
+            className="text-slate-300 hover:text-blue-600 transition-colors duration-200 p-1"
+            title="Add to Cart"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            ></path>
-          </svg>
+            <FaPlusCircle size={32} />
+          </button>
         </div>
       </div>
     </div>

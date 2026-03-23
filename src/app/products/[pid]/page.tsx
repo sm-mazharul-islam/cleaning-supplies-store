@@ -11,10 +11,10 @@ interface PId {
 
 const DetailPage = async ({ params }: PId) => {
   const res = await fetch(
-    `https://cleaning-supplies-store-server.vercel.app/products/${params.pid}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/products/${params.pid}`,
     {
       cache: "no-store",
-    }
+    },
   );
   const item = await res.json();
   // console.log(item);

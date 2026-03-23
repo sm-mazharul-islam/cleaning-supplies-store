@@ -1,7 +1,5 @@
 export const getAllCategories = async () => {
-  const res = await fetch(
-    "https://cleaning-supplies-store-server.vercel.app/flash-sale"
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/flash-sale`);
 
   return res.json();
 };

@@ -1,47 +1,67 @@
 import Link from "next/link";
 import FlashSaleCard from "../ui/FlashSaleCard";
-import { Product } from "@/types";
+import { TProduct } from "@/types";
+import { FaArrowRight, FaBolt } from "react-icons/fa";
 
 const HomeFlashSale = async () => {
-  const res = await fetch(
-    "https://cleaning-supplies-store-server.vercel.app/flash-sale"
-  );
+  // Fetching data from your backend
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/flash-sale`, {
+    next: { revalidate: 3600 }, // Cache for 1 hour for performance
+  });
   const { data: flashSaleSupplies } = await res.json();
-  // console.log(flashSaleSupplies);
 
   return (
-    <div className="mt-[60px]">
-      <div className="flex justify-between">
-        <h1 className="text-4xl font-bold ml-[10px] lg:ml-[170px]">
-          Flash Sale
-        </h1>
-        <Link href="/flashsale">
-          <button className="btn btn-neutral lg:mr-[170px] rounded-full text-white mr-[10px] ">
-            View All
-            <svg
-              className="w-[30px]"
-              data-slot="icon"
-              fill="none"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m8.25 4.5 7.5 7.5-7.5 7.5"
-              ></path>
-            </svg>
-          </button>
-        </Link>
+    <section className="py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 text-blue-600 font-bold uppercase tracking-widest text-sm">
+              <FaBolt className="animate-pulse" />
+              Limited Time Offer
+            </div>
+            <h2 className="text-4xl font-black text-slate-900 tracking-tight">
+              Flash Sale
+            </h2>
+          </div>
+
+          <div className="flex items-center gap-6">
+            {/* Optional Countdown UI */}
+            <div className="hidden lg:flex items-center gap-3 text-slate-400 font-medium">
+              <span>Ending in:</span>
+              <div className="flex gap-2 text-slate-900 font-bold">
+                <span className="bg-slate-100 px-2 py-1 rounded">04</span>:
+                <span className="bg-slate-100 px-2 py-1 rounded">12</span>:
+                <span className="bg-slate-100 px-2 py-1 rounded">59</span>
+              </div>
+            </div>
+
+            <Link href="/flash-sale">
+              <button className="group flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-full font-bold transition-all hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/30">
+                View All
+                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </Link>
+          </div>
+        </div>
+
+        {/* Responsive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-6">
+          {flashSaleSupplies?.slice(0, 4).map((item: TProduct) => (
+            <FlashSaleCard key={item._id} item={item} />
+          ))}
+        </div>
+
+        {/* Mobile View All Button (Visible only on small screens) */}
+        <div className="mt-8 md:hidden">
+          <Link href="/flash-sale">
+            <button className="w-full border-2 border-slate-200 py-4 rounded-2xl font-bold text-slate-700">
+              Browse All Sale Items
+            </button>
+          </Link>
+        </div>
       </div>
-      <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:ml-[150px] lg:mr-[150px] mx-auto ">
-        {flashSaleSupplies.slice(0, 4).map((item: Product) => (
-          <FlashSaleCard key={item._id} item={item}></FlashSaleCard>
-        ))}
-      </div>
-    </div>
+    </section>
   );
 };
 

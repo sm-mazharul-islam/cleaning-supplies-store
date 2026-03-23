@@ -7,9 +7,7 @@ import FlashSaleCard from "../ui/FlashSaleCard";
 import ProductCard from "../ui/ProductsCard";
 
 const HomeProducts = async () => {
-  const res = await fetch(
-    "https://cleaning-supplies-store-server.vercel.app/products"
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
   const { data: homeProducts } = await res.json();
 
   return (
