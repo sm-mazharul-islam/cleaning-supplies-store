@@ -32,7 +32,7 @@ const HomeFlashSale = async () => {
               <FlashSaleTimer />
             </div>
 
-            <Link href="/flash-sale">
+            <Link href="/flashsale">
               <button className="group flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-full font-bold transition-all hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/30">
                 View All
                 <FaArrowRight className="group-hover:translate-x-1 transition-transform" />

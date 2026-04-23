@@ -23,8 +23,8 @@ const Home = () => {
         {/* <Products /> */}
         <HomeProducts />
         <Testimonials />
-        <Footer />
       </Container>
+      <Footer />
     </>
   );
 };
