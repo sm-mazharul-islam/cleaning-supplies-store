@@ -82,7 +82,7 @@ const Header = () => {
         </div>
 
         {/* Swiper Section */}
-        <div className="mt-16 lg:mt-24 pb-20">
+        <div className="mt-0 lg:mt-24 pb-20">
           <Swiper
             loop={true}
             speed={1000} // Smoother transition
