@@ -45,9 +45,7 @@ const Features = () => {
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
             The Gold Standard of <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">
-              Modern Cleaning
-            </span>
+            <span className="text-blue-600">Modern Cleaning</span>
           </h2>
           <p className="text-slate-500 max-w-2xl mx-auto text-lg font-medium">
             We combine cutting-edge chemistry with sustainable practices to give

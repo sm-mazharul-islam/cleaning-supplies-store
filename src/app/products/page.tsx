@@ -81,7 +81,7 @@ const Products: React.FC = () => {
         <NavbarTwo />
         <div className="flex justify-between mt-[100px]">
           <div className="p-4 lg:p-0">
-            <h1 className="text-4xl font-bold lg:ml-[360px]">
+            <h1 className="text-4xl text-blue-600 font-bold lg:ml-[360px]">
               Most Popular Products
             </h1>
             <p className="lg:w-[50%] lg:ml-[360px] text-justify">

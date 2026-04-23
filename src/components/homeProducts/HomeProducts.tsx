@@ -15,12 +15,12 @@ const HomeProducts = async () => {
       {/* <div className="lg:px-[150px]">
         <h1 className="text-4xl"></h1>
       </div> */}
-      <div className="lg:flex lg:justify-between mt-[100px]">
+      <div className="lg:flex lg:justify-between">
         <div className="m-4 lg:m-0">
-          <h1 className="lg:ml-[130px] text-4xl font-bold ml-[10px]  ">
+          <h1 className="lg:ml-[130px] text-4xl ml-[10px] text-blue-600  md:text-5xl font-black mb-2 tracking-tight ">
             Most Popular Products
           </h1>
-          <p className="lg:ml-[130px]  lg:w-[50%] ml-[10px] lg:text-justify">
+          <p className="lg:ml-[130px]  lg:w-[50%] ml-[10px] lg:text-justify  font-black text-slate-500 mb-6 tracking-tight">
             Protect your home from harmful germs and bacteria with GermGuard
             Disinfectant Spray. This powerful disinfectant kills 99.9% of
             viruses and bacteria on contact, ensuring a hygienic environment.
