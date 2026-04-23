@@ -8,6 +8,7 @@ import Footer from "@/components/shared/Footer";
 import HomeFlashSale from "@/components/homeFlashSale/HomeFlashSale";
 import HomeProducts from "@/components/homeProducts/HomeProducts";
 import Features from "@/components/features/Features";
+import Testimonials from "@/components/testimonials/Testimonials";
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
         <TopCategoriesCard />
         {/* <Products /> */}
         <HomeProducts />
+        <Testimonials />
         <Footer />
       </Container>
     </>
