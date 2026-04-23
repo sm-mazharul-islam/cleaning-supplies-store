@@ -61,8 +61,8 @@ const Header = () => {
         <Navbar />
 
         {/* Text Content with Glassmorphism feel */}
-        <div className="text-center px-4 mt-16 lg:mt-24">
-          <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto drop-shadow-2xl">
+        <div className="text-center px-4 mt-36 lg:mt-24 ">
+          <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto drop-shadow-2xl ">
             Elevate Your <span className="text-blue-400">Cleaning Routine</span>{" "}
             Today
           </h1>

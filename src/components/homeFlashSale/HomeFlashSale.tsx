@@ -2,6 +2,7 @@ import Link from "next/link";
 import FlashSaleCard from "../ui/FlashSaleCard";
 import { TProduct } from "@/types";
 import { FaArrowRight, FaBolt } from "react-icons/fa";
+import FlashSaleTimer from "./FlashSaleTimer";
 
 const HomeFlashSale = async () => {
   // Fetching data from your backend
@@ -28,12 +29,7 @@ const HomeFlashSale = async () => {
           <div className="flex items-center gap-6">
             {/* Optional Countdown UI */}
             <div className="hidden lg:flex items-center gap-3 text-slate-400 font-medium">
-              <span>Ending in:</span>
-              <div className="flex gap-2 text-slate-900 font-bold">
-                <span className="bg-slate-100 px-2 py-1 rounded">04</span>:
-                <span className="bg-slate-100 px-2 py-1 rounded">12</span>:
-                <span className="bg-slate-100 px-2 py-1 rounded">59</span>
-              </div>
+              <FlashSaleTimer />
             </div>
 
             <Link href="/flash-sale">
