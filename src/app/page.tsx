@@ -7,6 +7,7 @@ import Products from "./products/page";
 import Footer from "@/components/shared/Footer";
 import HomeFlashSale from "@/components/homeFlashSale/HomeFlashSale";
 import HomeProducts from "@/components/homeProducts/HomeProducts";
+import Features from "@/components/features/Features";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Container>
         {/* <Navbar /> */}
         <Header />
+        <Features />
         <HomeFlashSale />
         {/* <HomePage /> */}
         <TopCategoriesCard />

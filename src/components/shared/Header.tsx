@@ -57,7 +57,7 @@ const Header = () => {
     <div className={styles.banner_container}>
       <Navbar />
       {/* <h1>This is Header</h1> */}
-      <h1 className="text-center text-4xl font-bold text-white lg:mt-[60px]">
+      <h1 className="text-center text-4xl font-bold text-white lg:mt-[60px] pt-20">
         {/* Dive into the joy of a spotless space and let our cleaning supplies be
         your trusted companion on the journey to a brighter, more vibrant life. */}
         Elevate your cleaning routine today!
@@ -99,7 +99,7 @@ const Header = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper max-w-[1100px] max-h-[400px] mx-auto mt-10 lg:mt-20 "
       >
-        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1440px] mx-auto ">
+        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1440px] mx-auto  ">
           {clientReview.map((item: THeader) => (
             <SwiperSlide className="swiper-slide1">
               <HeaderCard key={item.id} item={item}></HeaderCard>

@@ -1,58 +1,128 @@
 "use client";
+
 import React, { useState, FormEvent } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash, FaSignInAlt } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 const LoginForm: React.FC = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    toast.success("Login successful!");
+    setIsLoading(true);
+
+    try {
+      // URL must match your backend port and route
+      const response = await fetch("http://localhost:5000/api/v1/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+
+      // 1. Store the token (You can use cookies for better security later)
+      localStorage.setItem("token", data.token);
+
+      toast.success("Login successful! Redirecting...");
+
+      // 2. Redirect to dashboard or home after success
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 1500);
+    } catch (error: any) {
+      toast.error(error.message || "Invalid credentials");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-md mx-auto mt-8 p-6 bg-white shadow-md rounded-md"
-    >
-      <h2 className="text-2xl font-bold mb-4">Login</h2>
-      <div className="mb-4">
-        <label className="block text-gray-700">Email Address</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-          required
-        />
-      </div>
-      <div className="mb-4 relative">
-        <label className="block text-gray-700">Password</label>
-        <input
-          type={showPassword ? "text" : "password"}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded mt-1"
-          required
-        />
-        <div
-          className="absolute right-3 top-10 cursor-pointer"
-          onClick={() => setShowPassword(!showPassword)}
-        >
-          {showPassword ? <FaEyeSlash /> : <FaEye />}
-        </div>
-      </div>
-      <button
-        type="submit"
-        className="w-full bg-blue-600 text-white p-2 rounded mt-4"
+    <div className="min-h-[80vh] flex items-center justify-center bg-slate-50 p-4">
+      <ToastContainer position="top-center" />
+
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-md bg-white shadow-2xl rounded-[2.5rem] p-10 border border-slate-100"
       >
-        Login
-      </button>
-    </form>
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl mb-4">
+            <FaSignInAlt size={28} />
+          </div>
+          <h2 className="text-3xl font-black text-slate-900 tracking-tight">
+            Welcome Back
+          </h2>
+          <p className="text-slate-500 text-sm mt-2 font-medium">
+            Please enter your details
+          </p>
+        </div>
+
+        <div className="space-y-5">
+          <div>
+            <label className="block text-sm font-bold text-slate-700 ml-1">
+              Email Address
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl mt-1 focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+              placeholder="name@company.com"
+              required
+            />
+          </div>
+
+          <div className="relative">
+            <label className="block text-sm font-bold text-slate-700 ml-1">
+              Password
+            </label>
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl mt-1 focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+              placeholder="••••••••"
+              required
+            />
+            <button
+              type="button"
+              className="absolute right-4 top-11 text-slate-400 hover:text-blue-600 transition-colors"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full bg-slate-900 text-white p-4 rounded-2xl font-black mt-10 hover:bg-blue-600 transition-all active:scale-95 disabled:bg-slate-300 shadow-xl shadow-slate-200 uppercase tracking-widest text-sm"
+        >
+          {isLoading ? "Verifying..." : "Sign In"}
+        </button>
+
+        <p className="text-center mt-6 text-slate-500 text-sm">
+          Don`&apos;`t have an account?{" "}
+          <a
+            href="/register"
+            className="text-blue-600 font-bold hover:underline"
+          >
+            Register
+          </a>
+        </p>
+      </form>
+    </div>
   );
 };
 
