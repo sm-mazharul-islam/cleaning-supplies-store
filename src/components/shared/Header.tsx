@@ -66,12 +66,12 @@ const Header = () => {
             Elevate Your <span className="text-blue-400">Cleaning Routine</span>{" "}
             Today
           </h1>
-          <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-medium leading-relaxed opacity-90">
+          <p className="mt-5 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-medium leading-relaxed opacity-90">
             Turn mundane chores into acts of pride. Behind every spotless space
             is your dedication, creating a brighter, more vibrant life.
           </p>
 
-          <div className="mt-10 flex justify-center gap-4">
+          <div className="mt-5 flex justify-center gap-4">
             <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-lg shadow-blue-500/30 active:scale-95">
               Explore Services
             </button>
