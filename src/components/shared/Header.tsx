@@ -61,14 +61,13 @@ const Header = () => {
         <Navbar />
 
         {/* Text Content with Glassmorphism feel */}
-        <div className="text-center px-4 mt-36 lg:mt-24 ">
+        <div className="text-center px-4 mt-36 lg:mt-40 ">
           <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto drop-shadow-2xl ">
             Elevate Your <span className="text-blue-400">Cleaning Routine</span>{" "}
             Today
           </h1>
           <p className="mt-5 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-medium leading-relaxed opacity-90">
-            Turn mundane chores into acts of pride. Behind every spotless space
-            is your dedication, creating a brighter, more vibrant life.
+            The Science of Clean, the Art of Living.
           </p>
 
           <div className="mt-5 flex justify-center gap-4">
