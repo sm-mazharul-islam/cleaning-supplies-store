@@ -98,6 +98,11 @@ const Navbar = () => {
                   Flash Sale
                 </Link>
               </li>
+              <li>
+                <Link href="/about" className="py-3 px-4 active:bg-blue-50">
+                  About
+                </Link>
+              </li>
 
               <li>
                 <Link
