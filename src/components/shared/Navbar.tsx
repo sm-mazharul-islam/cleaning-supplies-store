@@ -30,8 +30,7 @@ const Navbar = () => {
     }
 
     const handleScroll = () => {
-      // Small threshold for faster transition
-      setIsScrolled(window.scrollY > 15);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -45,10 +44,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ease-in-out backdrop-blur-md ${
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ease-in-out ${
         isScrolled
-          ? "bg-white/90 shadow-sm h-16 border-b border-slate-100"
-          : "bg-white/40 h-20 border-b border-transparent"
+          ? "bg-white/95 backdrop-blur-md shadow-md h-16 border-b border-slate-100"
+          : "bg-gradient-to-b to-transparent h-24 border-b border-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
@@ -58,7 +57,7 @@ const Navbar = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle text-slate-800"
+              className={`btn btn-ghost btn-circle ${isScrolled ? "text-slate-800" : "text-white"}`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -100,18 +99,20 @@ const Navbar = () => {
           <Link href="/" className="flex items-center shrink-0">
             <Image
               src={logo}
-              width={isScrolled ? 48 : 56}
-              height={isScrolled ? 48 : 56}
+              width={isScrolled ? 48 : 58}
+              height={isScrolled ? 48 : 58}
               alt="logo"
-              className="transition-all duration-500 object-contain"
+              className="transition-all duration-500 object-contain brightness-110"
               priority
             />
           </Link>
         </div>
 
-        {/* CENTER: Navigation (Balanced Visual Weight) */}
+        {/* CENTER: Navigation Links */}
         <div className="hidden lg:flex items-center justify-center flex-grow">
-          <ul className="flex flex-row gap-10 text-[13px] font-black text-slate-700 uppercase tracking-[0.18em]">
+          <ul
+            className={`flex flex-row gap-10 text-[13px] font-black uppercase tracking-[0.18em] transition-colors duration-500 ${isScrolled ? "text-slate-700" : "text-white shadow-sm"}`}
+          >
             {["Home", "Products", "Category", "Flash Sale", "Dashboard"].map(
               (item) => (
                 <li key={item}>
@@ -121,11 +122,12 @@ const Navbar = () => {
                         ? "/"
                         : `/${item.toLowerCase().replace(" ", "")}`
                     }
-                    className="relative py-1.5 transition-all duration-300 hover:text-blue-600 group"
+                    className="relative py-1.5 transition-all duration-300 hover:text-blue-400 group"
                   >
                     {item}
-                    {/* Subtle Underline */}
-                    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-blue-600 transition-all duration-500 group-hover:w-full"></span>
+                    <span
+                      className={`absolute bottom-0 left-0 w-0 h-[2px] transition-all duration-500 group-hover:w-full ${isScrolled ? "bg-blue-600" : "bg-white"}`}
+                    ></span>
                   </Link>
                 </li>
               ),
@@ -133,15 +135,14 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* RIGHT: Auth/User (Consistent Sizing) */}
+        {/* RIGHT: User Profile / Auth */}
         <div className="flex items-center justify-end gap-5 flex-1">
           {user ? (
             <div className="flex items-center gap-4">
               <div className="hidden xl:block text-right">
-                {/* <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">
-                  Welcome
-                </p> */}
-                <p className="text-sm font-black text-slate-900 leading-none">
+                <p
+                  className={`text-sm font-black leading-none transition-colors duration-500 ${isScrolled ? "text-slate-900" : "text-white"}`}
+                >
                   {user.userName}
                 </p>
               </div>
@@ -153,22 +154,23 @@ const Navbar = () => {
                   className="avatar hover:opacity-90 transition-opacity"
                 >
                   <div
-                    className={`rounded-2xl ring-2 ring-blue-500/10 ring-offset-2 ring-offset-white transition-all duration-500 ${isScrolled ? "w-9" : "w-10"}`}
+                    className={`rounded-2xl ring-2 ring-offset-2 transition-all duration-500 ${isScrolled ? "w-9 ring-blue-500/20 ring-offset-white" : "w-10 ring-white/30 ring-offset-black/20"}`}
                   >
                     <Image
                       src={
                         user.pictureUrl ||
                         `https://ui-avatars.com/api/?name=${user.userName}&background=f8fafc&color=2563eb&bold=true`
                       }
-                      height={30}
-                      width={30}
+                      height={40}
+                      width={40}
                       alt="avatar"
+                      className="object-cover"
                     />
                   </div>
                 </div>
                 <ul
                   tabIndex={0}
-                  className="mt-4 z-[1] p-3 shadow-2xl menu menu-sm dropdown-content bg-white/95 backdrop-blur-xl rounded-3xl w-60 border border-slate-100"
+                  className="mt-4 z-[1] p-3 shadow-2xl menu menu-sm dropdown-content bg-white rounded-3xl w-60 border border-slate-100 text-slate-800"
                 >
                   <li>
                     <Link href="/profile" className="py-3 font-bold rounded-xl">
@@ -199,13 +201,17 @@ const Navbar = () => {
             <div className="flex items-center gap-3">
               <Link
                 href="/login"
-                className="hidden sm:block text-[11px] font-black text-slate-800 hover:text-blue-600 transition-colors tracking-[0.1em] uppercase"
+                className={`hidden sm:block text-[11px] font-black transition-colors tracking-[0.1em] uppercase ${isScrolled ? "text-slate-800 hover:text-blue-600" : "text-white hover:text-blue-200"}`}
               >
                 Login
               </Link>
               <Link
                 href="/register"
-                className="bg-slate-900 text-white px-7 py-3 rounded-2xl text-[10px] font-black tracking-[0.15em] hover:bg-blue-600 transition-all shadow-xl shadow-slate-200 active:scale-95 uppercase whitespace-nowrap"
+                className={`px-7 py-3 rounded-2xl text-[10px] font-black tracking-[0.15em] transition-all shadow-xl active:scale-95 uppercase whitespace-nowrap ${
+                  isScrolled
+                    ? "bg-slate-900 text-white hover:bg-blue-600 shadow-slate-200"
+                    : "bg-white text-slate-900 hover:bg-blue-50 shadow-black/20"
+                }`}
               >
                 Register
               </Link>
