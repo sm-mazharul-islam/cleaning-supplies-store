@@ -1,17 +1,15 @@
 "use client";
-/* eslint-disable react/jsx-key */
-import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-// import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import HeaderCard from "../ui/HeaderCard";
 import styles from "./Header.module.css";
 import Navbar from "./Navbar";
 import { THeader } from "@/types";
+
 const Header = () => {
   const clientReview = [
     {
@@ -20,7 +18,7 @@ const Header = () => {
       image:
         "https://themes.envytheme.com/rivsy/wp-content/uploads/2022/03/banner-1.jpg",
       description:
-        " a statement or account giving the characteristics of someone or something ",
+        "A statement or account giving the characteristics of someone or something.",
       star: 4,
     },
     {
@@ -29,17 +27,16 @@ const Header = () => {
       image:
         "https://themes.envytheme.com/rivsy/wp-content/uploads/2022/03/banner-3.jpg",
       description:
-        " a statement or account giving the characteristics of someone or something ",
+        "A statement or account giving the characteristics of someone or something.",
       star: 4,
     },
     {
       id: 3,
-      name: "windows Cleaning",
+      name: "Windows Cleaning",
       image:
         "https://themes.envytheme.com/rivsy/wp-content/uploads/2022/03/banner-2.jpg",
       description:
-        " a statement or account giving the characteristics of someone or something ",
-
+        "A statement or account giving the characteristics of someone or something.",
       star: 4,
     },
     {
@@ -48,65 +45,75 @@ const Header = () => {
       image:
         "https://themes.envytheme.com/rivsy/wp-content/uploads/2022/03/banner-4.jpg",
       description:
-        " a statement or account giving the characteristics of someone or something ",
+        "A statement or account giving the characteristics of someone or something.",
       star: 4,
     },
   ];
 
   return (
-    <div className={styles.banner_container}>
-      <Navbar />
-      {/* <h1>This is Header</h1> */}
-      <h1 className="text-center text-4xl font-bold text-white lg:mt-[60px] pt-20">
-        {/* Dive into the joy of a spotless space and let our cleaning supplies be
-        your trusted companion on the journey to a brighter, more vibrant life. */}
-        Elevate your cleaning routine today!
-      </h1>
-      <p className="text-center text-xl mt-4 text-gray-200  lg:w-[40%] mx-auto">
-        Remember, behind every clean space is your dedication and effort,
-        turning mundane chores into acts of pride and accomplishment!
-      </p>
-      <Swiper
-        loop={true}
-        pagination={{ clickable: false }}
-        slidesPerView={3}
-        breakpoints={{
-          0: {
-            slidesPerView: 1,
-            spaceBetween: 10,
-          },
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 10,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 10,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-          },
-        }}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
-        spaceBetween={10}
-        // onSwiper={setSwiperRef}
-        centeredSlides={false}
-        navigation={false}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper max-w-[1100px] max-h-[400px] mx-auto mt-10 lg:mt-20 "
-      >
-        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[1440px] mx-auto  ">
-          {clientReview.map((item: THeader) => (
-            <SwiperSlide className="swiper-slide1">
-              <HeaderCard key={item.id} item={item}></HeaderCard>
-            </SwiperSlide>
-          ))}
+    <div
+      className={`${styles.banner_container} relative min-h-screen overflow-hidden bg-slate-900`}
+    >
+      {/* Dynamic Background Overlay for extra depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70 z-0"></div>
+
+      <div className="relative z-10">
+        <Navbar />
+
+        {/* Text Content with Glassmorphism feel */}
+        <div className="text-center px-4 mt-16 lg:mt-24">
+          <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto drop-shadow-2xl">
+            Elevate Your <span className="text-blue-400">Cleaning Routine</span>{" "}
+            Today
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-medium leading-relaxed opacity-90">
+            Turn mundane chores into acts of pride. Behind every spotless space
+            is your dedication, creating a brighter, more vibrant life.
+          </p>
+
+          <div className="mt-10 flex justify-center gap-4">
+            <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-lg shadow-blue-500/30 active:scale-95">
+              Explore Services
+            </button>
+            <button className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-full backdrop-blur-md border border-white/20 transition-all">
+              Watch Demo
+            </button>
+          </div>
         </div>
-      </Swiper>
+
+        {/* Swiper Section */}
+        <div className="mt-16 lg:mt-24 pb-20">
+          <Swiper
+            loop={true}
+            speed={1000} // Smoother transition
+            grabCursor={true}
+            centeredSlides={true} // Focus on the middle card
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 2, spaceBetween: 20 },
+              1024: { slidesPerView: 3, spaceBetween: 30 },
+            }}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: false,
+            }}
+            modules={[Autoplay, Pagination, Navigation]}
+            className="max-w-[1300px] !px-10"
+          >
+            {clientReview.map((item: THeader) => (
+              <SwiperSlide
+                key={item.id}
+                className="transition-all duration-500 py-10"
+              >
+                {/* Scale effect for the active slide (usually handled via CSS .swiper-slide-active) */}
+                <div className="transform transition-transform duration-500 hover:scale-[1.02]">
+                  <HeaderCard item={item} />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
     </div>
   );
 };
