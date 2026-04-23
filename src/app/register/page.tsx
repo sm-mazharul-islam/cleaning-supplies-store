@@ -37,11 +37,14 @@ const RegisterForm: React.FC = () => {
 
     try {
       // NOTE: Point this to your actual Backend URL
-      const response = await fetch("http://localhost:5000/api/v1/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/register`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        },
+      );
 
       const data = await response.json();
 

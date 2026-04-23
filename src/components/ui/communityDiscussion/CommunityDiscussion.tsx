@@ -35,7 +35,7 @@ const CommunityDiscussion = ({ productId }: { productId: string }) => {
     const fetchComments = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/v1/comments/${productId}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/comments/${productId}`,
         );
         const result = await res.json();
         if (result.success) setComments(result.data);
@@ -55,11 +55,14 @@ const CommunityDiscussion = ({ productId }: { productId: string }) => {
       productId: productId,
     };
 
-    const res = await fetch(`http://localhost:5000/api/v1/comments`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/comments`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      },
+    );
 
     const result = await res.json();
     if (result.success) {

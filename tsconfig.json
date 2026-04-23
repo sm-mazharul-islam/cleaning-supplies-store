@@ -27,7 +27,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "swiper-modules.d.ts",
-    "src/index.d.ts"
+    "src/global.d.ts"
   ],
   "exclude": ["node_modules"]
 }

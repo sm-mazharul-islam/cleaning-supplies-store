@@ -22,11 +22,14 @@ const LoginForm: React.FC = () => {
 
     try {
       // 1. API Call
-      const response = await fetch("http://localhost:5000/api/v1/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        },
+      );
 
       const data = await response.json();
 
