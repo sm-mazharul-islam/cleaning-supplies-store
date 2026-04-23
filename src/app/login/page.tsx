@@ -2,12 +2,15 @@
 
 import React, { useState, FormEvent } from "react";
 import { FaEye, FaEyeSlash, FaSignInAlt } from "react-icons/fa";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext"; // Import your Auth Hook
+import { jwtDecode } from "jwt-decode"; // Import decoder
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
+  const { setUser } = useAuth(); // Access setUser to update global state
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +21,7 @@ const LoginForm: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // URL must match your backend port and route
+      // 1. API Call
       const response = await fetch("http://localhost:5000/api/v1/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -31,15 +34,19 @@ const LoginForm: React.FC = () => {
         throw new Error(data.message || "Login failed");
       }
 
-      // 1. Store the token (You can use cookies for better security later)
+      // 2. Store Token in LocalStorage
       localStorage.setItem("token", data.token);
+
+      // 3. Decode Token & Update Context State (Crucial for ProtectedRoute)
+      const decoded: any = jwtDecode(data.token);
+      setUser(decoded);
 
       toast.success("Login successful! Redirecting...");
 
-      // 2. Redirect to dashboard or home after success
+      // 4. Redirect to Dashboard
       setTimeout(() => {
         router.push("/dashboard");
-      }, 1500);
+      }, 1000);
     } catch (error: any) {
       toast.error(error.message || "Invalid credentials");
     } finally {
@@ -49,12 +56,11 @@ const LoginForm: React.FC = () => {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-slate-50 p-4">
-      <ToastContainer position="top-center" />
-
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-md bg-white shadow-2xl rounded-[2.5rem] p-10 border border-slate-100"
       >
+        {/* LOGO & TITLE */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl mb-4">
             <FaSignInAlt size={28} />
@@ -63,10 +69,11 @@ const LoginForm: React.FC = () => {
             Welcome Back
           </h2>
           <p className="text-slate-500 text-sm mt-2 font-medium">
-            Please enter your details
+            Please enter your details to access your dashboard
           </p>
         </div>
 
+        {/* INPUT FIELDS */}
         <div className="space-y-5">
           <div>
             <label className="block text-sm font-bold text-slate-700 ml-1">
@@ -104,16 +111,25 @@ const LoginForm: React.FC = () => {
           </div>
         </div>
 
+        {/* SUBMIT BUTTON */}
         <button
           type="submit"
           disabled={isLoading}
           className="w-full bg-slate-900 text-white p-4 rounded-2xl font-black mt-10 hover:bg-blue-600 transition-all active:scale-95 disabled:bg-slate-300 shadow-xl shadow-slate-200 uppercase tracking-widest text-sm"
         >
-          {isLoading ? "Verifying..." : "Sign In"}
+          {isLoading ? (
+            <span className="flex items-center justify-center gap-2">
+              <span className="loading loading-spinner loading-xs"></span>
+              Verifying...
+            </span>
+          ) : (
+            "Sign In"
+          )}
         </button>
 
+        {/* FOOTER */}
         <p className="text-center mt-6 text-slate-500 text-sm">
-          Don`&apos;`t have an account?{" "}
+          Don&apos;t have an account?{" "}
           <a
             href="/register"
             className="text-blue-600 font-bold hover:underline"
