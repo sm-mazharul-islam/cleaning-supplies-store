@@ -4,8 +4,8 @@ import logo from "././../../assets/images/logo (1).png";
 
 const NavbarTwo = () => {
   return (
-    <div className="navbar">
-      <div className="navbar-start">
+    <div className="navbar ">
+      <div className="navbar-start ">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg

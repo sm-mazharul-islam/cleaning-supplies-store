@@ -74,7 +74,7 @@ const CommunityDiscussion = ({ productId }: { productId: string }) => {
   const handlePostReply = async (commentId: string) => {
     if (!replyText.trim() || !user) return;
     const res = await fetch(
-      `http://localhost:5000/api/v1/comments/reply/${commentId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/comments/reply/${commentId}`,
       {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
