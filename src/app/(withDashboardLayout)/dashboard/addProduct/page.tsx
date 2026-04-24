@@ -1,14 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  FaCloudUploadAlt,
-  FaTag,
-  FaDollarSign,
-  FaStar,
-  FaAlignLeft,
-} from "react-icons/fa";
-import { toast } from "react-toastify";
+import { FaCloudUploadAlt, FaTag, FaDollarSign, FaStar } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddProductPage = () => {
   const [formData, setFormData] = useState({
@@ -31,13 +26,73 @@ const AddProductPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Your API logic here
-    console.log("Submitting Data:", formData);
-    toast.success("Product Added Successfully!");
+
+    // ভ্যালিডেশন
+    if (!formData.image || !formData.title || !formData.salePrice) {
+      return toast.error(
+        "Please fill in the required fields (Image, Title, Price)",
+      );
+    }
+
+    const toastId = toast.loading("Publishing product to inventory...");
+
+    try {
+      const baseUrl =
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
+      const res = await fetch(`${baseUrl}/products`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          // নিশ্চিত করা হচ্ছে যে নাম্বারগুলো স্ট্রিং হিসেবে যাচ্ছে না
+          rating: Number(formData.rating),
+          originalPrice: Number(formData.originalPrice),
+          salePrice: Number(formData.salePrice),
+        }),
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        toast.update(toastId, {
+          render: "Product Published Successfully! 🎉",
+          type: "success",
+          isLoading: false,
+          autoClose: 3000,
+        });
+
+        // ফর্ম রিসেট করা
+        setFormData({
+          image: "",
+          title: "",
+          description: "",
+          brand: "",
+          rating: 4.5,
+          originalPrice: 0,
+          salePrice: 0,
+          longDescription: "",
+        });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error(result.message || "Failed to add product");
+      }
+    } catch (error: any) {
+      toast.update(toastId, {
+        render: error.message || "Something went wrong!",
+        type: "error",
+        isLoading: false,
+        autoClose: 3000,
+      });
+    }
   };
 
   return (
     <div className="min-h-screen pb-20">
+      <ToastContainer position="top-right" theme="colored" />
+
       {/* Header Section */}
       <div className="mb-10">
         <h1 className="text-4xl font-black text-slate-900 tracking-tight">
@@ -52,7 +107,6 @@ const AddProductPage = () => {
         {/* LEFT: THE FORM */}
         <div className="lg:col-span-7 bg-white p-8 rounded-[2.5rem] shadow-2xl shadow-slate-200/50 border border-slate-100">
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Image URL Input */}
             <div className="form-control">
               <label className="label font-bold text-slate-700">
                 Image URL
@@ -64,6 +118,7 @@ const AddProductPage = () => {
                 <input
                   type="text"
                   name="image"
+                  required
                   placeholder="https://image-link.com"
                   className="input input-bordered w-full pl-12 rounded-2xl bg-slate-50 border-slate-200 focus:border-blue-500 transition-all"
                   onChange={handleChange}
@@ -72,7 +127,6 @@ const AddProductPage = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Title */}
               <div className="form-control">
                 <label className="label font-bold text-slate-700">
                   Product Title
@@ -84,6 +138,7 @@ const AddProductPage = () => {
                   <input
                     type="text"
                     name="title"
+                    required
                     placeholder="ClearMist Air Freshener"
                     className="input input-bordered w-full pl-12 rounded-2xl bg-slate-50 border-slate-200"
                     onChange={handleChange}
@@ -91,7 +146,6 @@ const AddProductPage = () => {
                 </div>
               </div>
 
-              {/* Brand */}
               <div className="form-control">
                 <label className="label font-bold text-slate-700">
                   Brand Name
@@ -106,7 +160,6 @@ const AddProductPage = () => {
               </div>
             </div>
 
-            {/* Short Description */}
             <div className="form-control">
               <label className="label font-bold text-slate-700">
                 Short Description
@@ -121,7 +174,6 @@ const AddProductPage = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Original Price */}
               <div className="form-control">
                 <label className="label font-bold text-slate-700">
                   Original Price
@@ -140,7 +192,6 @@ const AddProductPage = () => {
                 </div>
               </div>
 
-              {/* Sale Price */}
               <div className="form-control">
                 <label className="label font-bold text-slate-700">
                   Sale Price
@@ -152,6 +203,7 @@ const AddProductPage = () => {
                   <input
                     type="number"
                     name="salePrice"
+                    required
                     placeholder="5.49"
                     className="input input-bordered w-full pl-10 rounded-2xl bg-slate-50 border-slate-200"
                     onChange={handleChange}
@@ -159,7 +211,6 @@ const AddProductPage = () => {
                 </div>
               </div>
 
-              {/* Rating */}
               <div className="form-control">
                 <label className="label font-bold text-slate-700">
                   Initial Rating
@@ -172,7 +223,7 @@ const AddProductPage = () => {
                     type="number"
                     step="0.1"
                     name="rating"
-                    placeholder="4.5"
+                    defaultValue={4.5}
                     className="input input-bordered w-full pl-10 rounded-2xl bg-slate-50 border-slate-200"
                     onChange={handleChange}
                   />
@@ -180,10 +231,9 @@ const AddProductPage = () => {
               </div>
             </div>
 
-            {/* Long Description */}
             <div className="form-control">
               <label className="label font-bold text-slate-700">
-                Long Description (Detailed)
+                Long Description
               </label>
               <textarea
                 name="longDescription"
@@ -209,8 +259,6 @@ const AddProductPage = () => {
             <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-4 ml-2">
               Live Preview
             </p>
-
-            {/* The Gorgeous Card */}
             <div className="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-100 group">
               <div className="relative h-64 bg-slate-100 overflow-hidden">
                 {formData.image ? (
@@ -241,12 +289,10 @@ const AddProductPage = () => {
                     <FaStar size={14} /> {formData.rating}
                   </div>
                 </div>
-
                 <p className="text-slate-500 text-sm font-medium mb-6 line-clamp-2">
                   {formData.description ||
                     "Short description will appear here..."}
                 </p>
-
                 <div className="flex items-center justify-between border-t border-slate-50 pt-6">
                   <div className="flex flex-col">
                     <span className="text-xs font-bold text-slate-400 line-through">
@@ -261,12 +307,6 @@ const AddProductPage = () => {
                   </button>
                 </div>
               </div>
-            </div>
-
-            <div className="mt-6 p-4 bg-blue-50 rounded-2xl border border-blue-100">
-              <p className="text-[10px] text-blue-600 font-bold uppercase leading-relaxed text-center">
-                Preview reflects how the user will see your product in the shop.
-              </p>
             </div>
           </div>
         </div>
