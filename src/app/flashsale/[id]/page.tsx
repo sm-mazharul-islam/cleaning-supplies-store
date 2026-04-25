@@ -1,7 +1,5 @@
 import { TProduct } from "@/types";
 import Container from "@/components/shared/Container";
-// DetailCard এর পরিবর্তে নতুন গর্জিয়াস কার্ডটি ইমপোর্ট করুন
-
 import { FaTruck, FaShieldAlt, FaAward, FaChevronRight } from "react-icons/fa";
 import Link from "next/link";
 import FlashSaleCard from "@/components/ui/FlashSaleCard";

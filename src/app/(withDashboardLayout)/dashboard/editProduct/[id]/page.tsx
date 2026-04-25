@@ -17,11 +17,10 @@ const EditProductPage = () => {
     fetch(`${baseUrl}/products/${id}`)
       .then((res) => res.json())
       .then((result) => {
-        // আপনার ব্যাকএন্ড যদি { success: true, data: {...} } এভাবে পাঠায়
         if (result.data) {
           setFormData(result.data);
         } else {
-          setFormData(result); // সরাসরি অবজেক্ট পাঠালে
+          setFormData(result);
         }
       })
       .catch((err) => {

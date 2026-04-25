@@ -65,7 +65,7 @@ const ProductCard = ({ item }: { item: TProduct }) => {
           {/* Action Area: Animated "See More" */}
           <div className="relative overflow-hidden h-10 flex items-center">
             <Link
-              href={`/products/${_id}`}
+              href={`/items/${_id}`}
               className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-all transform translate-y-10 group-hover:translate-y-0 duration-500"
             >
               See More

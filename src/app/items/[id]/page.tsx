@@ -3,15 +3,15 @@ import Footer from "@/components/shared/Footer";
 import NavbarTwo from "@/components/shared/NavbarTwo";
 import DetailCard from "@/components/ui/DetailCard";
 
-interface PId {
+interface id {
   params: {
-    pid: string;
+    id: string;
   };
 }
 
-const DetailPage = async ({ params }: PId) => {
+const DetailPage = async ({ params }: id) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/${params.pid}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/products/${params.id}`,
     {
       cache: "no-store",
     },

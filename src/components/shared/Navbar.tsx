@@ -85,7 +85,7 @@ const Navbar = () => {
               </li>
               <li>
                 <Link href="/products" className="py-3 px-4 active:bg-blue-50">
-                  Products
+                  Items
                 </Link>
               </li>
               <li>
@@ -137,7 +137,7 @@ const Navbar = () => {
           >
             {[
               "Home",
-              "Products",
+              "Items",
               "Category",
               "FlashSale",
               "About",
@@ -203,13 +203,16 @@ const Navbar = () => {
                     {user.userName}
                   </li>
                   <li>
-                    <Link href="/profile" className="py-3 font-bold rounded-xl">
+                    <Link
+                      href="/items/add"
+                      className="py-3 font-bold rounded-xl"
+                    >
                       Add Product
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/dashboard"
+                      href="/items/manage"
                       className="py-3 font-bold rounded-xl"
                     >
                       Manage Product

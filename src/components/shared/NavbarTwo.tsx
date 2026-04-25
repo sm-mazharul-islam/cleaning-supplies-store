@@ -10,7 +10,7 @@ const NavbarTwo = () => {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Products", href: "/products" },
+    { name: "Items", href: "/items" },
     { name: "Flash Sale", href: "/flashsale" },
     { name: "Dashboard", href: "/dashboard" },
   ];
