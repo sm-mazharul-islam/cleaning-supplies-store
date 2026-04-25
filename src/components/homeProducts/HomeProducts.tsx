@@ -51,8 +51,9 @@ const HomeProducts = async () => {
         </Link>
       </div>
       <div>
-        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:ml-[100px] lg:mr-[150px]  mx-auto">
-          {homeProducts.slice(0, 8).map((item: TProduct) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:ml-[100px] lg:mr-[150px] mx-auto">
+          {/* The (homeProducts || []) ensures slice never runs on undefined */}
+          {(homeProducts || []).slice(0, 8).map((item: TProduct) => (
             <ProductCard key={item._id} item={item}></ProductCard>
           ))}
         </div>

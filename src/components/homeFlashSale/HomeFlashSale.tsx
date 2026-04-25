@@ -41,11 +41,18 @@ const HomeFlashSale = async () => {
           </div>
         </div>
 
-        {/* Responsive Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-6">
-          {flashSaleSupplies?.slice(0, 4).map((item: TProduct) => (
-            <FlashSaleCard key={item._id} item={item} />
-          ))}
+          {flashSaleSupplies && flashSaleSupplies.length > 0 ? (
+            flashSaleSupplies
+              .slice(0, 4)
+              .map((item: TProduct) => (
+                <FlashSaleCard key={item._id} item={item} />
+              ))
+          ) : (
+            <p className="text-gray-500 col-span-full text-center py-10">
+              No flash sale products available at the moment.
+            </p>
+          )}
         </div>
 
         {/* Mobile View All Button (Visible only on small screens) */}
