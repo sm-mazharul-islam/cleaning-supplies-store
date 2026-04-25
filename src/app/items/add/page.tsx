@@ -1,6 +1,7 @@
 "use client";
 
 import Container from "@/components/shared/Container";
+import Image from "next/image";
 import React, { useState } from "react";
 import { FaCloudUploadAlt, FaTag, FaDollarSign, FaStar } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
@@ -262,10 +263,12 @@ const Add = () => {
               <div className="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-100 group">
                 <div className="relative h-64 bg-slate-100 overflow-hidden">
                   {formData.image ? (
-                    <img
+                    <Image
                       src={formData.image}
                       alt="preview"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      height={40}
+                      width={35}
                     />
                   ) : (
                     <div className="flex items-center justify-center h-full text-slate-300 flex-col gap-2">

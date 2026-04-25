@@ -144,11 +144,13 @@ const CommunityDiscussion = ({ productId }: { productId: string }) => {
         {comments.map((c) => (
           <div key={c._id} className="comment-card">
             <div className="flex gap-4 p-6 bg-white rounded-[2rem] border border-slate-100 shadow-sm">
-              <img
+              <Image
                 src={
                   c.pictureUrl ||
                   `https://ui-avatars.com/api/?name=${c.userName}`
                 }
+                height={40}
+                width={35}
                 className="w-12 h-12 rounded-xl"
                 alt="avatar"
               />
@@ -202,11 +204,13 @@ const CommunityDiscussion = ({ productId }: { productId: string }) => {
                         key={`reply-${c._id}-${idx}`}
                         className="flex gap-3 bg-slate-50/50 p-3 rounded-xl ml-4"
                       >
-                        <img
+                        <Image
                           src={
                             r.pictureUrl ||
                             `https://ui-avatars.com/api/?name=${r.userName}`
                           }
+                          height={40}
+                          width={35}
                           className="w-8 h-8 rounded-lg"
                           alt="reply"
                         />

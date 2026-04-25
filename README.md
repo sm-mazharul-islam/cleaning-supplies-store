@@ -94,4 +94,4 @@ Follow these organized steps to get the project running on your local machine.
 
 ---
 
-Developed with ❤️ by **S M Mazharul Islam Masum** for **Cleaning Supplies Store**.
+Developed with ❤️ by **S M Mazharul Islam** for **Cleaning Supplies Store**.

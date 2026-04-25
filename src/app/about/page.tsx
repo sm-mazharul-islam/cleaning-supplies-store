@@ -182,7 +182,7 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
             {[
               {
-                name: "S M Mazharul",
+                name: "Sakib Hasan",
                 role: "Chief Formulator",
                 img: "https://i.pravatar.cc/300?u=maz",
               },
@@ -192,7 +192,7 @@ const AboutPage = () => {
                 img: "https://i.pravatar.cc/300?u=sarah",
               },
               {
-                name: "Tanvir Hasan",
+                name: "selina parvin",
                 role: "Product Designer",
                 img: "https://i.pravatar.cc/300?u=tan",
               },

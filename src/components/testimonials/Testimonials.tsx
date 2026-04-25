@@ -117,7 +117,12 @@ const Testimonials = () => {
                   <div className="flex items-center gap-4 pt-6 border-t border-slate-50">
                     <div className="avatar">
                       <div className="w-14 h-14 rounded-2xl ring-2 ring-blue-500/10 ring-offset-2">
-                        <img src={item.image} alt={item.name} />
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          height={40}
+                          width={35}
+                        />
                       </div>
                     </div>
                     <div>

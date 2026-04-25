@@ -4,6 +4,7 @@ import React from "react";
 import { FaEdit, FaPlus } from "react-icons/fa";
 import Link from "next/link";
 import DeleteButton from "@/components/productDeleteButton/DeleteButton";
+import Image from "next/image";
 
 const AllSupply = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`, {
@@ -62,10 +63,12 @@ const AllSupply = async () => {
                   <td className="px-8 py-5 whitespace-nowrap">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-slate-100 overflow-hidden border border-slate-50">
-                        <img
+                        <Image
                           src={item.image}
                           alt=""
                           className="w-full h-full object-cover"
+                          height={40}
+                          width={35}
                         />
                       </div>
                       <div className="text-sm font-bold text-slate-900">
@@ -111,9 +114,11 @@ const AllSupply = async () => {
               className="bg-white p-6 rounded-[2rem] shadow-lg border border-slate-100"
             >
               <div className="flex gap-4 mb-4">
-                <img
+                <Image
                   src={item.image}
                   className="w-16 h-16 rounded-2xl object-cover border"
+                  height={40}
+                  width={35}
                   alt=""
                 />
                 <div>
