@@ -41,7 +41,6 @@ const EditProductPage = () => {
     const loadingToast = toast.loading("Updating product...");
 
     try {
-      // অপ্রয়োজনীয় _id ফিল্ড রিমুভ করা (মঙ্গোডিবি অনেক সময় আপডেট করতে দেয় না যদি বডিতে _id থাকে)
       const { _id, ...updatePayload } = formData;
 
       const res = await fetch(`${baseUrl}/products/${id}`, {

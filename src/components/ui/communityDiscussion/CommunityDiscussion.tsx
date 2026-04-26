@@ -104,7 +104,7 @@ const CommunityDiscussion = ({ productId }: { productId: string }) => {
     <section
       className="max-w-4xl mx-auto my-20 px-4"
       id="discussion-root"
-      translate="no" // গুগল ট্রান্সলেট যেন ডম চেঞ্জ না করে
+      translate="no"
     >
       <h2 className="text-3xl font-black mb-10 text-slate-900">
         Community Discussions

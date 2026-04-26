@@ -31,7 +31,6 @@ const FlashSaleDetailCard: React.FC<Props> = ({ item }) => {
     logo,
   } = item;
 
-  // ডিসকাউন্ট ক্যালকুলেশন
   const discount = Math.round(
     ((originalPrice - salePrice) / originalPrice) * 100,
   );

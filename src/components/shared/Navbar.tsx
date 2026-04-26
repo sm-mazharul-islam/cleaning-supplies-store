@@ -84,7 +84,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/products" className="py-3 px-4 active:bg-blue-50">
+                <Link href="/items" className="py-3 px-4 active:bg-blue-50">
                   Items
                 </Link>
               </li>

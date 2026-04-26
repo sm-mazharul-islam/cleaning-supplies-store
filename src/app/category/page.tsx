@@ -123,7 +123,7 @@ export default function Category() {
 
                 <div className="relative z-10">
                   <Link
-                    href={`/products?category=${cat.id}`}
+                    href={`/items?category=${cat.id}`}
                     className="inline-flex items-center gap-2 text-blue-600 font-extrabold uppercase text-[11px] tracking-widest group-hover:gap-4 transition-all"
                   >
                     View Collection <FaChevronRight className="text-[10px]" />

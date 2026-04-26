@@ -26,12 +26,8 @@ const FlashSale = async () => {
           {/* হেডার সেকশন */}
           <div className="mb-10 px-4">
             <h1 className="text-4xl font-black text-slate-900">Flash Sale</h1>
-            <p className="text-slate-500 mt-2">
-              সীমিত সময়ের জন্য সেরা ডিলগুলো লুফে নিন!
-            </p>
           </div>
 
-          {/* গ্রিড লেআউট (উইডথ আগের মতোই রাখা হয়েছে) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:ml-[150px] lg:mr-[150px] mx-auto gap-6">
             {flashSaleCleaningSupplies.map((item: TProduct) => (
               <FlashSaleCard key={item._id} item={item} />
@@ -41,7 +37,7 @@ const FlashSale = async () => {
           {/* যদি ডাটা না থাকে */}
           {flashSaleCleaningSupplies.length === 0 && (
             <div className="text-center py-20 text-slate-400">
-              বর্তমানে কোনো ফ্ল্যাশ সেল নেই। আবার চেক করুন!
+              no flash sale available
             </div>
           )}
         </Container>

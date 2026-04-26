@@ -28,7 +28,6 @@ const AddProductPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // ভ্যালিডেশন
     if (!formData.image || !formData.title || !formData.salePrice) {
       return toast.error(
         "Please fill in the required fields (Image, Title, Price)",
@@ -48,7 +47,6 @@ const AddProductPage = () => {
         },
         body: JSON.stringify({
           ...formData,
-          // নিশ্চিত করা হচ্ছে যে নাম্বারগুলো স্ট্রিং হিসেবে যাচ্ছে না
           rating: Number(formData.rating),
           originalPrice: Number(formData.originalPrice),
           salePrice: Number(formData.salePrice),

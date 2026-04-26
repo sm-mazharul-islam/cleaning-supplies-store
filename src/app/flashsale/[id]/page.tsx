@@ -22,7 +22,6 @@ const DetailFlashSale = async ({ params }: Props) => {
     },
   );
 
-  // যদি রেসপন্স ঠিক না থাকে (৪-০-৪ হ্যান্ডলিং)
   if (!res.ok) {
     return (
       <div className="h-[70vh] flex flex-col items-center justify-center space-y-4">
@@ -46,7 +45,6 @@ const DetailFlashSale = async ({ params }: Props) => {
   return (
     <div className="min-h-screen bg-[#F8FAFC] pb-20 font-sans">
       <Container>
-        {/* Breadcrumbs - ক্লিন এবং প্রফেশনাল নেভিগেশন */}
         <nav className="py-8 px-4 flex items-center gap-2 text-sm text-slate-400">
           <Link href="/" className="hover:text-blue-600 transition-colors">
             Home
@@ -64,7 +62,6 @@ const DetailFlashSale = async ({ params }: Props) => {
           </span>
         </nav>
 
-        {/* নতুন FlashSaleDetailCard এখানে কল করা হয়েছে */}
         <div className="animate-in fade-in slide-in-from-bottom-6 duration-1000">
           <FlashSaleDetailCard item={product} />
         </div>
