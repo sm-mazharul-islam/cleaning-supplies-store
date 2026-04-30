@@ -17,7 +17,7 @@ const DeleteButton = ({ id, title }: { id: string; title: string }) => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/products/${id}`,
         {
           method: "DELETE",
         },

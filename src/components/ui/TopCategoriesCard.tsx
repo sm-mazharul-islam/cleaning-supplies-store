@@ -1,8 +1,19 @@
+"use client";
+
 import Image from "next/image";
-import { FaArrowRight, FaHashtag } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
+
+// 1. Define the interface with 'title'
+interface CategoryItem {
+  id: string;
+  title: string;
+  desc: string;
+  image: string;
+}
 
 const TopCategoriesCard = () => {
-  const categories = [
+  // 2. Ensure data uses 'title' to match the interface
+  const categories: CategoryItem[] = [
     {
       id: "01",
       title: "Surface Degreaser",
@@ -34,68 +45,68 @@ const TopCategoriesCard = () => {
   ];
 
   return (
-    <section className="py-24">
+    <section className="py-24 bg-base-100 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Header: Split Design */}
+        {/* Header Section */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-20">
           <div className="max-w-2xl">
-            <span className="badge badge-primary font-black tracking-[0.3em] py-3 mb-4 rounded-md uppercase text-[10px]">
+            <span className="badge badge-primary font-black tracking-[0.3em] py-3 mb-4 rounded-md uppercase text-[10px] border-none">
               Top Categories
             </span>
-            <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none">
+            <h2 className="text-4xl md:text-6xl font-black text-base-content tracking-tighter leading-none">
               High Performance <br />
-              <span className=" text-blue-600">Cleaning Supplies</span>
+              <span className="text-blue-600">Cleaning Supplies</span>
             </h2>
           </div>
-          <button className="btn btn-ghost group flex items-center gap-4 hover:bg-transparent">
+
+          <button className="btn btn-ghost group flex items-center gap-4 hover:bg-transparent text-base-content">
             <span className="font-black text-sm tracking-widest uppercase">
               View Full Series
             </span>
-            <div className="w-12 h-12 rounded-full bg-slate-900 text-white flex items-center justify-center group-hover:bg-blue-600 transition-all">
+            <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center group-hover:scale-110 transition-all shadow-lg shadow-blue-600/20">
               <FaArrowRight />
             </div>
           </button>
         </div>
 
-        {/* Grid: Sleek List-Cards */}
+        {/* Grid Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {categories.map((cat) => (
+          {categories.map((cat: CategoryItem) => (
             <div
               key={cat.id}
-              className="group relative flex flex-col sm:flex-row items-center gap-6 bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden"
+              className="group relative flex flex-col sm:flex-row items-center gap-6 bg-base-100 p-6 rounded-[2rem] border border-base-content/10 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden"
             >
-              {/* Image with Dynamic Mask */}
-              <div className="relative w-full sm:w-48 h-48 flex-shrink-0 overflow-hidden rounded-2xl">
+              {/* Image Section */}
+              <div className="relative w-full sm:w-48 h-48 flex-shrink-0 overflow-hidden rounded-2xl bg-base-200">
                 <Image
                   src={cat.image}
                   alt={cat.title}
                   fill
                   className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
                 />
-                {/* ID Badge overlay */}
-                <div className="absolute top-2 left-2 w-8 h-8 bg-white/80 backdrop-blur-md rounded-lg flex items-center justify-center text-[10px] font-black">
+                <div className="absolute top-2 left-2 w-8 h-8 bg-base-100/60 backdrop-blur-md rounded-lg flex items-center justify-center text-[10px] font-black text-base-content">
                   {cat.id}
                 </div>
               </div>
 
               {/* Content Section */}
-              <div className="flex-grow">
+              <div className="flex-grow z-10">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="h-0.5 w-6 bg-blue-600"></div>
                   <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">
                     Premium Quality
                   </span>
                 </div>
-                <h3 className="text-2xl font-black text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+                {/* 3. Access 'cat.title' here instead of 'cat.name' */}
+                <h3 className="text-2xl font-black text-base-content mb-3 group-hover:text-blue-600 transition-colors">
                   {cat.title}
                 </h3>
-                <p className="text-sm text-slate-500 font-medium leading-relaxed">
+                <p className="text-sm text-base-content opacity-60 font-medium leading-relaxed">
                   {cat.desc}
                 </p>
 
-                {/* Floating "Explore" Text (since no link) */}
                 <div className="mt-5 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-[-10px] group-hover:translate-x-0">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-base-content opacity-40">
                     Inventory Status:{" "}
                   </span>
                   <span className="text-[10px] font-black uppercase text-emerald-500">
@@ -104,8 +115,8 @@ const TopCategoriesCard = () => {
                 </div>
               </div>
 
-              {/* Large Background ID Number for "Gorgeous" depth */}
-              <div className="absolute -bottom-10 -right-5 text-[120px] font-black text-slate-100 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none italic">
+              {/* Decorative background ID */}
+              <div className="absolute -bottom-10 -right-5 text-[120px] font-black text-base-content opacity-0 group-hover:opacity-5 transition-opacity pointer-events-none italic">
                 {cat.id}
               </div>
             </div>
@@ -113,9 +124,9 @@ const TopCategoriesCard = () => {
         </div>
 
         {/* Safety Footer */}
-        <div className="mt-16 flex items-center justify-center gap-3 py-4 border-t border-slate-100">
+        <div className="mt-16 flex items-center justify-center gap-3 py-4 ">
           <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></div>
-          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em]">
+          <p className="text-[11px] font-bold text-base-content opacity-40 uppercase tracking-[0.2em] text-center">
             Always wear protective gear while handling industrial chemicals
           </p>
         </div>

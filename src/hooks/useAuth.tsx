@@ -1,38 +1,35 @@
 "use client";
 import { useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode";
+import { onAuthStateChanged, User as FirebaseUser } from "firebase/auth";
+import { auth } from "@/lib/Firebase";
 
-interface User {
+interface UserProfile {
   userName: string;
   email: string;
   pictureUrl: string;
+  uid: string;
 }
 
 export const useAuth = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const decoded: any = jwtDecode(token);
-        // টোকেন এক্সপায়ার হয়েছে কিনা চেক করুন
-        if (decoded.exp * 1000 < Date.now()) {
-          localStorage.removeItem("token");
-          setUser(null);
-        } else {
-          setUser({
-            userName: decoded.userName,
-            email: decoded.email,
-            pictureUrl: decoded.pictureUrl,
-          });
-        }
-      } catch (error) {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        setUser({
+          userName: firebaseUser.displayName || "Anonymous",
+          email: firebaseUser.email || "",
+          pictureUrl: firebaseUser.photoURL || "",
+          uid: firebaseUser.uid,
+        });
+      } else {
         setUser(null);
       }
-    }
-    setLoading(false);
+      setLoading(false);
+    });
+
+    return () => unsubscribe(); // Cleanup listener
   }, []);
 
   return { user, loading };

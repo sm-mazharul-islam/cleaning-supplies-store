@@ -4,11 +4,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+// import "swiper/css/effect-coverflow"; // নতুন ইফেক্ট
+import {
+  Autoplay,
+  Pagination,
+  Navigation,
+  EffectCoverflow,
+} from "swiper/modules";
 import HeaderCard from "../ui/HeaderCard";
 import styles from "./Header.module.css";
 import Navbar from "./Navbar";
 import { THeader } from "@/types";
+import { motion } from "framer-motion"; // অ্যানিমেশনের জন্য
 
 const Header = () => {
   const clientReview = [
@@ -18,8 +25,8 @@ const Header = () => {
       image:
         "https://themes.envytheme.com/rivsy/wp-content/uploads/2022/03/banner-1.jpg",
       description:
-        "A statement or account giving the characteristics of someone or something.",
-      star: 4,
+        "Experience a spotless home with our expert residential cleaning services.",
+      star: 5,
     },
     {
       id: 2,
@@ -27,8 +34,8 @@ const Header = () => {
       image:
         "https://themes.envytheme.com/rivsy/wp-content/uploads/2022/03/banner-3.jpg",
       description:
-        "A statement or account giving the characteristics of someone or something.",
-      star: 4,
+        "Boost productivity with a clean, organized, and fresh workplace environment.",
+      star: 5,
     },
     {
       id: 3,
@@ -36,8 +43,8 @@ const Header = () => {
       image:
         "https://themes.envytheme.com/rivsy/wp-content/uploads/2022/03/banner-2.jpg",
       description:
-        "A statement or account giving the characteristics of someone or something.",
-      star: 4,
+        "Crystal clear views with our professional streak-free window cleaning.",
+      star: 5,
     },
     {
       id: 6,
@@ -45,74 +52,115 @@ const Header = () => {
       image:
         "https://themes.envytheme.com/rivsy/wp-content/uploads/2022/03/banner-4.jpg",
       description:
-        "A statement or account giving the characteristics of someone or something.",
-      star: 4,
+        "Reliable plumbing solutions to keep your home running smoothly.",
+      star: 5,
     },
   ];
 
   return (
     <div
-      className={`${styles.banner_container} relative min-h-screen overflow-hidden bg-slate-900`}
+      className={`${styles.banner_container} relative min-h-screen overflow-hidden bg-[#020617]`}
     >
-      {/* Dynamic Background Overlay for extra depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70 z-0"></div>
+      {/* Animated Background Orbs for Luxury Feel */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-600/20 blur-[120px] animate-pulse"></div>
+      <div
+        className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-indigo-600/20 blur-[120px] animate-pulse"
+        style={{ animationDelay: "2s" }}
+      ></div>
+
+      {/* Modern Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-slate-950 via-slate-950/80 to-transparent z-0"></div>
 
       <div className="relative z-10">
         <Navbar />
 
-        {/* Text Content with Glassmorphism feel */}
-        <div className="text-center px-4 mt-36 lg:mt-24 ">
-          <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto drop-shadow-2xl ">
-            Elevate Your <span className="text-blue-400">Cleaning Routine</span>{" "}
-            Today
-          </h1>
-          <p className="mt-5 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto font-medium leading-relaxed opacity-90">
-            The Science of Clean, the Art of Living.
-          </p>
+        {/* Hero Section with Framer Motion */}
+        <div className="text-center px-4 mt-20 lg:mt-32">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-widest text-blue-400 uppercase bg-blue-400/10 border border-blue-400/20 rounded-full backdrop-blur-md">
+              ✨ Premium Cleaning Services
+            </span>
+            <h1 className="text-5xl md:text-5xl font-black text-white tracking-tighter leading-[0.9] max-w-5xl mx-auto drop-shadow-2xl">
+              Elevate Your{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400 ">
+                Environment
+              </span>{" "}
+              Today
+            </h1>
+            {/* <p className="mt-8 text-lg md:text-2xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
+              Where science meets serenity. Experience the ultimate{" "}
+              <br className="hidden md:block" />
+              standard in professional cleanliness and home care.
+            </p> */}
 
-          <div className="mt-5 flex justify-center gap-4">
-            <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-lg shadow-blue-500/30 active:scale-95">
-              Explore Services
-            </button>
-            <button className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-full backdrop-blur-md border border-white/20 transition-all">
-              Watch Demo
-            </button>
-          </div>
+            <div className="mt-5 flex flex-wrap justify-center gap-6">
+              <button className="group relative px-5 py-4 bg-blue-600 text-white font-black rounded-full overflow-hidden transition-all shadow-2xl shadow-blue-500/40 hover:scale-105 active:scale-95">
+                <span className="relative z-10 uppercase tracking-widest text-sm">
+                  Explore Services
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              </button>
+
+              <button className="px-10 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-full backdrop-blur-xl border border-white/10 transition-all hover:border-white/30 uppercase tracking-widest text-sm">
+                Watch Demo
+              </button>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Swiper Section */}
-        <div className="mt-0 lg:mt-24 pb-20">
+        {/* Gorgeous Swiper Section with Coverflow Effect */}
+        <div className="mt-5 lg:mt-5 pb-24">
           <Swiper
-            loop={true}
-            speed={1000} // Smoother transition
+            effect={"coverflow"}
             grabCursor={true}
-            centeredSlides={true} // Focus on the middle card
-            slidesPerView={1}
-            breakpoints={{
-              640: { slidesPerView: 2, spaceBetween: 20 },
-              1024: { slidesPerView: 3, spaceBetween: 30 },
+            centeredSlides={true}
+            loop={true}
+            slidesPerView={"auto"}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 2.5,
+              slideShadows: false,
             }}
             autoplay={{
-              delay: 2000,
+              delay: 3000,
               disableOnInteraction: false,
             }}
-            modules={[Autoplay, Pagination, Navigation]}
-            className="max-w-[1300px] !px-10"
+            speed={1200}
+            modules={[Autoplay, Pagination, Navigation, EffectCoverflow]}
+            className="max-w-[1400px] !px-10"
           >
             {clientReview.map((item: THeader) => (
               <SwiperSlide
                 key={item.id}
-                className="transition-all duration-500 py-10"
+                className="!w-[300px] md:!w-[450px] transition-all duration-700"
               >
-                {/* Scale effect for the active slide (usually handled via CSS .swiper-slide-active) */}
-                <div className="transform transition-transform duration-500 hover:scale-[1.02]">
-                  <HeaderCard item={item} />
-                </div>
+                {({ isActive }) => (
+                  <div
+                    className={`transform transition-all duration-700 ${isActive ? "scale-110 opacity-100" : "scale-90 opacity-40 blur-[2px]"}`}
+                  >
+                    <div className="relative group">
+                      {/* Glow Effect behind active card */}
+                      {isActive && (
+                        <div className="absolute inset-0 bg-blue-500/20 rounded-[2.5rem] blur-2xl -z-10 animate-pulse"></div>
+                      )}
+                      <HeaderCard item={item} />
+                    </div>
+                  </div>
+                )}
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
       </div>
+
+      {/* Decorative Bottom Fade */}
+      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#020617] to-transparent z-20 pointer-events-none"></div>
     </div>
   );
 };

@@ -54,7 +54,9 @@ const Products: React.FC = () => {
       params.append("page", page.toString());
       params.append("limit", "10");
 
-      const res = await fetch(`${baseUrl}/products?${params.toString()}`);
+      const res = await fetch(
+        `${baseUrl}/api/v1/products?${params.toString()}`,
+      );
 
       if (!res.ok) {
         throw new Error(`Failed to fetch: ${res.status}`);
@@ -92,15 +94,16 @@ const Products: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="bg-base-200 transition-colors duration-300 min-h-screen">
+      <NavbarTwo />
       <Container>
-        <NavbarTwo />
-        <div className="flex justify-between mt-[100px]">
+        {/* Title Section */}
+        <div className="flex justify-between pt-24">
           <div className="p-4 lg:p-0">
-            <h1 className="text-4xl text-blue-600 font-bold lg:ml-[360px]">
-              Most Popular Products
+            <h1 className="text-4xl text-blue-600 font-black lg:ml-[360px] tracking-tight">
+              Most Popular <span className="text-base-content">Products</span>
             </h1>
-            <p className="lg:w-[50%] lg:ml-[360px] text-justify text-gray-600">
+            <p className="lg:w-[50%] lg:ml-[360px] text-justify text-base-content opacity-70 mt-4 leading-relaxed font-medium">
               Protect your home from harmful germs and bacteria with GermGuard
               Disinfectant Spray. This powerful disinfectant kills 99.9% of
               viruses and bacteria on contact, ensuring a hygienic environment.
@@ -108,60 +111,71 @@ const Products: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid p-2 lg:p-0 grid-cols-1 lg:grid-cols-4 gap-6 mt-10">
-          {/* Sidebar / Filter Section */}
+        {/* Content Layout */}
+        <div className="grid p-2 lg:p-0 grid-cols-1 lg:grid-cols-4 gap-8 mt-12 pb-20">
+          {/* Sidebar / Filter Section - Uses dynamic bg-base-100 inside component */}
           <div className="lg:col-span-1">
-            <FilterProducts
-              filters={filters}
-              onFilterChange={handleFilterChange}
-            />
+            <div className="sticky top-28">
+              <FilterProducts
+                filters={filters}
+                onFilterChange={handleFilterChange}
+              />
+            </div>
           </div>
 
           {/* Products Grid Section */}
           <div className="lg:col-span-3">
             {products.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {products.map((item) => (
                   <ProductCard key={item._id} item={item} />
                 ))}
               </div>
             ) : (
-              <div className="flex justify-center items-center h-64">
-                <p className="text-xl text-gray-500">No products found.</p>
+              <div className="flex flex-col justify-center items-center h-96 bg-base-100 rounded-[2rem] border-2 border-dashed border-base-content/10">
+                <p className="text-xl text-base-content opacity-50 font-bold">
+                  No products found.
+                </p>
               </div>
             )}
-          </div>
-        </div>
 
-        {/* Pagination Buttons */}
-        <div className="flex justify-center items-center mt-10 mb-20 gap-4">
-          <button
-            className={`px-6 py-2 rounded font-medium ${
-              page === 1
-                ? "bg-gray-300 cursor-not-allowed"
-                : "bg-blue-600 text-white hover:bg-blue-700"
-            }`}
-            onClick={handlePrevPage}
-            disabled={page === 1}
-          >
-            Prev
-          </button>
-          <span className="font-semibold">Page {page}</span>
-          <button
-            className={`px-6 py-2 rounded font-medium ${
-              page * 10 >= total
-                ? "bg-gray-300 cursor-not-allowed"
-                : "bg-blue-600 text-white hover:bg-blue-700"
-            }`}
-            onClick={handleNextPage}
-            disabled={page * 10 >= total}
-          >
-            Next
-          </button>
+            {/* Pagination Buttons */}
+            <div className="flex justify-center items-center mt-16 gap-6">
+              <button
+                className={`btn rounded-2xl px-8 transition-all active:scale-95 ${
+                  page === 1
+                    ? "btn-disabled opacity-30"
+                    : "btn-primary shadow-lg shadow-blue-600/20"
+                }`}
+                onClick={handlePrevPage}
+                disabled={page === 1}
+              >
+                Prev
+              </button>
+
+              <div className="bg-base-100 px-6 py-2 rounded-2xl border border-base-content/5 shadow-sm">
+                <span className="font-black text-base-content tracking-widest uppercase text-xs">
+                  Page {page}
+                </span>
+              </div>
+
+              <button
+                className={`btn rounded-2xl px-8 transition-all active:scale-95 ${
+                  page * 10 >= total
+                    ? "btn-disabled opacity-30"
+                    : "btn-primary shadow-lg shadow-blue-600/20"
+                }`}
+                onClick={handleNextPage}
+                disabled={page * 10 >= total}
+              >
+                Next
+              </button>
+            </div>
+          </div>
         </div>
         <Footer />
       </Container>
-    </>
+    </div>
   );
 };
 

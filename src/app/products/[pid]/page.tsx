@@ -11,7 +11,7 @@ interface PId {
 
 const DetailPage = async ({ params }: PId) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/products/${params.pid}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/products/${params.pid}`,
     {
       cache: "no-store",
     },

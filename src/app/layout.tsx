@@ -1,40 +1,6 @@
-// import type { Metadata } from "next";
-// import { Inter } from "next/font/google";
-// import "./globals.css";
-// import { ToastContainer } from "react-toastify";
-
-// const inter = Inter({ subsets: ["latin"] });
-
-// export const metadata: Metadata = {
-//   title: "Lizel | Cleaning Supplies ",
-//   description: "Cleaning Supplies App",
-// };
-
-// export default function RootLayout({
-//   children,
-// }: Readonly<{
-//   children: React.ReactNode;
-// }>) {
-//   return (
-//     <html lang="en" data-theme="light">
-//       <body className={inter.className}>{children}</body>
-//       {/* <ToastContainer  position="top-right"
-//   autoClose={5000}
-//   hideProgressBar={false}
-//   newestOnTop={false}
-//   closeOnClick
-//   rtl={false}
-//   pauseOnFocusLoss
-//   draggable
-//   pauseOnHover  /> */}
-//     </html>
-//   );
-// }
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-// If the CSS import still shows an error, ensure react-toastify is installed
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "@/context/AuthContext";
@@ -42,8 +8,8 @@ import { AuthProvider } from "@/context/AuthContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Lizel | Cleaning Supplies ",
-  description: "Cleaning Supplies App",
+  title: "Lizel | Cleaning Supplies",
+  description: "Premium Cleaning Supplies Inventory & Community App",
 };
 
 export default function RootLayout({
@@ -52,21 +18,48 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="light">
-      <body className={inter.className}>
-        {/* The AuthProvider MUST wrap everything to prevent the useAuth error */}
+    // Removed the hardcoded data-theme="light" to allow dynamic switching
+    <html lang="en">
+      <head>
+        {/* 
+          This script runs immediately before the page is painted.
+          It checks localStorage for a saved theme and applies it to the <html> tag.
+          This prevents the "flash" of light mode for dark mode users.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const savedTheme = localStorage.getItem('theme');
+                  const theme = savedTheme || 'light';
+                  document.documentElement.setAttribute('data-theme', theme);
+                } catch (e) {
+                  console.error("Theme initialization failed", e);
+                }
+              })()
+            `,
+          }}
+        />
+      </head>
+      <body
+        className={`${inter.className} min-h-screen bg-base-100 transition-colors duration-300`}
+      >
         <AuthProvider>
-          {children}
+          {/* Main content wrapper */}
+          <main>{children}</main>
+
+          {/* Global Toast Notifications */}
           <ToastContainer
             position="top-right"
-            autoClose={5000}
+            autoClose={3000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick
-            rtl={false}
             pauseOnFocusLoss
             draggable
             pauseOnHover
+            theme="colored" // This will automatically adapt better to theme changes
           />
         </AuthProvider>
       </body>

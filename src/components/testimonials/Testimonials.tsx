@@ -50,14 +50,14 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-24  overflow-hidden">
+    <section className="py-24 bg-base-100 overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
           <p className="text-blue-600 font-black uppercase tracking-[0.2em] text-xs mb-3">
             Testimonials
           </p>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-black text-base-content tracking-tight">
             What Our <span className="text-blue-600">Clients</span> Say
           </h2>
           <div className="w-20 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full"></div>
@@ -87,14 +87,15 @@ const Testimonials = () => {
           >
             {reviews.map((item) => (
               <SwiperSlide key={item.id} className="h-auto">
-                <div className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 flex flex-col h-full transition-all duration-300 hover:-translate-y-2 group">
-                  {/* Quote Icon */}
-                  <div className="text-blue-100 group-hover:text-blue-500 transition-colors duration-500 mb-6">
+                {/* Card: Adaptive Background and Border */}
+                <div className="bg-base-100 border border-base-content/10 p-8 rounded-[2.5rem] shadow-xl shadow-base-content/5 flex flex-col h-full transition-all duration-300 hover:-translate-y-2 hover:bg-base-200 group">
+                  {/* Quote Icon: Subtle in light, distinct in dark */}
+                  <div className="text-blue-500/20 group-hover:text-blue-500 transition-colors duration-500 mb-6">
                     <FaQuoteLeft size={40} />
                   </div>
 
                   {/* Review Text */}
-                  <p className="text-slate-600 leading-relaxed italic mb-8 flex-grow">
+                  <p className="text-base-content/70 leading-relaxed italic mb-8 flex-grow">
                     {item.review}
                   </p>
 
@@ -106,7 +107,7 @@ const Testimonials = () => {
                         className={
                           index < item.rating
                             ? "text-yellow-400"
-                            : "text-slate-200"
+                            : "text-base-content/10"
                         }
                         size={14}
                       />
@@ -114,19 +115,20 @@ const Testimonials = () => {
                   </div>
 
                   {/* User Profile */}
-                  <div className="flex items-center gap-4 pt-6 border-t border-slate-50">
+                  <div className="flex items-center gap-4 pt-6 border-t border-base-content/5">
                     <div className="avatar">
-                      <div className="w-14 h-14 rounded-2xl ring-2 ring-blue-500/10 ring-offset-2">
+                      <div className="w-14 h-14 rounded-2xl ring-2 ring-blue-500/20 ring-offset-2 ring-offset-base-100">
                         <Image
                           src={item.image}
                           alt={item.name}
-                          height={40}
-                          width={35}
+                          height={56}
+                          width={56}
+                          className="object-cover"
                         />
                       </div>
                     </div>
                     <div>
-                      <h4 className="font-black text-slate-900 leading-none mb-1">
+                      <h4 className="font-black text-base-content leading-none mb-1">
                         {item.name}
                       </h4>
                       <p className="text-xs font-bold text-blue-600 uppercase tracking-widest">
@@ -141,12 +143,20 @@ const Testimonials = () => {
         </div>
       </div>
 
-      {/* Custom Swiper Styles for Gorgeous Pagination */}
+      {/* Custom Swiper Styles for Theme-Aware Pagination */}
       <style jsx global>{`
+        .swiper-pagination-bullet {
+          background: var(
+            --bc,
+            #94a3b8
+          ); /* DaisyUI base-content variable fallback */
+          opacity: 0.3;
+        }
         .swiper-pagination-bullet-active {
           background: #2563eb !important;
           width: 24px !important;
           border-radius: 5px !important;
+          opacity: 1 !important;
         }
         .swiper-pagination {
           bottom: 0 !important;

@@ -14,7 +14,7 @@ const EditProductPage = () => {
 
   useEffect(() => {
     // ১. ডাটা ফেচ করার সময় রেসপন্স ফরম্যাট চেক করা
-    fetch(`${baseUrl}/products/${id}`)
+    fetch(`${baseUrl}/api/v1/products/${id}`)
       .then((res) => res.json())
       .then((result) => {
         if (result.data) {
@@ -43,7 +43,7 @@ const EditProductPage = () => {
     try {
       const { _id, ...updatePayload } = formData;
 
-      const res = await fetch(`${baseUrl}/products/${id}`, {
+      const res = await fetch(`${baseUrl}/api/v1/products/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

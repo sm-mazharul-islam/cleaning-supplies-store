@@ -54,7 +54,9 @@ const Products: React.FC = () => {
       params.append("page", page.toString());
       params.append("limit", "10");
 
-      const res = await fetch(`${baseUrl}/products?${params.toString()}`);
+      const res = await fetch(
+        `${baseUrl}/api/v1/products?${params.toString()}`,
+      );
 
       if (!res.ok) {
         throw new Error(`Failed to fetch: ${res.status}`);

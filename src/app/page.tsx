@@ -12,9 +12,9 @@ import Testimonials from "@/components/testimonials/Testimonials";
 const Home = () => {
   return (
     <>
+      <Header />
       <Container>
         {/* <Navbar /> */}
-        <Header />
         <Features />
         <HomeFlashSale />
         {/* <HomePage /> */}

@@ -7,9 +7,12 @@ import DeleteButton from "@/components/productDeleteButton/DeleteButton";
 import Image from "next/image";
 
 const Manage = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/products`,
+    {
+      cache: "no-store",
+    },
+  );
   const { data: allSupply } = await res.json();
 
   return (

@@ -10,7 +10,6 @@ import {
   FaShieldVirus,
   FaChevronRight,
 } from "react-icons/fa";
-import Navbar from "@/components/shared/Navbar";
 import NavbarTwo from "@/components/shared/NavbarTwo";
 import Footer from "@/components/shared/Footer";
 
@@ -22,7 +21,6 @@ const categories = [
       "Heavy-duty solutions for warehouses and large scale factories.",
     icon: <FaTools size={32} />,
     gradient: "from-blue-600/10 to-transparent",
-    hoverBorder: "hover:border-blue-600/50",
     count: 120,
   },
   {
@@ -31,7 +29,6 @@ const categories = [
     description: "Everything you need to keep your home sparkling and fresh.",
     icon: <FaHome size={32} />,
     gradient: "from-blue-600/10 to-transparent",
-    hoverBorder: "hover:border-blue-600/50",
     count: 85,
   },
   {
@@ -40,7 +37,6 @@ const categories = [
     description: "Medical-grade sprays to kill 99.9% of germs and bacteria.",
     icon: <FaShieldVirus size={32} />,
     gradient: "from-blue-700/10 to-transparent",
-    hoverBorder: "hover:border-blue-700/50",
     count: 45,
   },
   {
@@ -49,7 +45,6 @@ const categories = [
     description: "Premium hand washes, sanitizers, and luxury soaps.",
     icon: <FaHandsWash size={32} />,
     gradient: "from-blue-500/10 to-transparent",
-    hoverBorder: "hover:border-blue-500/50",
     count: 60,
   },
   {
@@ -58,7 +53,6 @@ const categories = [
     description: "Safe and effective degreasers for a professional kitchen.",
     icon: <FaSoap size={32} />,
     gradient: "from-blue-600/10 to-transparent",
-    hoverBorder: "hover:border-blue-600/50",
     count: 30,
   },
   {
@@ -67,7 +61,6 @@ const categories = [
     description: "Streak-free shine for all your mirrors and glass surfaces.",
     icon: <FaSprayCan size={32} />,
     gradient: "from-blue-600/10 to-transparent",
-    hoverBorder: "hover:border-blue-600/50",
     count: 25,
   },
 ];
@@ -76,14 +69,18 @@ export default function Category() {
   return (
     <>
       <NavbarTwo />
-      <div className="min-h-screen bg-[#F8FAFC] py-20 px-6">
+      {/* 
+          bg-base-200 adapts to the theme background
+          transition-colors ensures a smooth fade between light/dark 
+      */}
+      <div className="min-h-screen bg-base-200 py-20 px-6 transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">
+            <h1 className="text-5xl md:text-6xl font-black text-base-content mb-6 tracking-tight">
               Premium <span className="text-blue-600">Categories</span>
             </h1>
-            <p className="text-slate-500 text-lg max-w-2xl mx-auto font-medium leading-relaxed">
+            <p className="text-base-content opacity-70 text-lg max-w-2xl mx-auto font-medium leading-relaxed">
               Discover professional-grade cleaning solutions curated for your
               specific environment and needs.
             </p>
@@ -95,9 +92,10 @@ export default function Category() {
             {categories.map((cat) => (
               <div
                 key={cat.id}
-                className={`group relative p-8 rounded-[2rem] bg-white border-2 border-transparent shadow-sm ${cat.hoverBorder} hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden`}
+                /* bg-base-100 makes the card background dynamic */
+                className="group relative p-8 rounded-[2rem] bg-base-100 border-2 border-transparent shadow-sm hover:border-blue-600/50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden"
               >
-                {/* Subtle Background Gradient */}
+                {/* Subtle Background Gradient Overlay */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${cat.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                 ></div>
@@ -107,16 +105,17 @@ export default function Category() {
                     <div className="w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-600/20 group-hover:scale-110 transition-transform duration-300">
                       {cat.icon}
                     </div>
-                    <span className="text-blue-600 font-bold text-[10px] uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                    {/* Badge uses blue-600/10 for a subtle theme-aware tint */}
+                    <span className="text-blue-600 font-bold text-[10px] uppercase tracking-widest bg-blue-600/10 px-3 py-1 rounded-full border border-blue-600/20">
                       {cat.count} Products
                     </span>
                   </div>
 
-                  <h2 className="text-2xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors">
+                  <h2 className="text-2xl font-bold text-base-content mb-3 group-hover:text-blue-600 transition-colors">
                     {cat.name}
                   </h2>
 
-                  <p className="text-slate-500 text-sm leading-relaxed mb-8">
+                  <p className="text-base-content opacity-60 text-sm leading-relaxed mb-8">
                     {cat.description}
                   </p>
                 </div>
@@ -134,13 +133,14 @@ export default function Category() {
           </div>
 
           {/* Professional Support Banner */}
-          <div className="mt-24 p-10 md:p-16 rounded-[3rem] bg-slate-900 text-white relative overflow-hidden shadow-2xl">
+          {/* bg-neutral adapts to a dark contrast regardless of theme[cite: 1] */}
+          <div className="mt-24 p-10 md:p-16 rounded-[3rem] bg-neutral text-neutral-content relative overflow-hidden shadow-2xl">
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
               <div className="text-center md:text-left">
                 <h3 className="text-3xl font-bold mb-3 tracking-tight">
                   Looking for Bulk Orders?
                 </h3>
-                <p className="text-slate-400 max-w-md">
+                <p className="opacity-70 max-w-md">
                   Our sales experts are ready to provide custom quotes for
                   industrial and commercial needs.
                 </p>
@@ -149,8 +149,8 @@ export default function Category() {
                 Contact Sales Team
               </button>
             </div>
-            {/* Decorative Elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600 opacity-10 rounded-full blur-[80px] -mr-32 -mt-32"></div>
+            {/* Decorative Element */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600 opacity-20 rounded-full blur-[80px] -mr-32 -mt-32"></div>
           </div>
         </div>
       </div>

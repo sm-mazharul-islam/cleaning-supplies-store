@@ -4,6 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "ds-cdn.dubaistore.com",
         hostname: "**",
       },
     ],

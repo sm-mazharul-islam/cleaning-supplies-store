@@ -41,7 +41,7 @@ const Add = () => {
       const baseUrl =
         process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
-      const res = await fetch(`${baseUrl}/products`, {
+      const res = await fetch(`${baseUrl}/api/v1/products`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
