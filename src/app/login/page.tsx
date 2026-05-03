@@ -102,7 +102,7 @@ const LoginForm = () => {
     <>
       <NavbarTwo />
       <div className="min-h-screen flex items-center justify-center p-4 transition-colors">
-        <div className="w-full max-w-md bg-white dark:bg-slate-900 p-10 rounded-[2.5rem] shadow-2xl border dark:border-slate-800">
+        <div className="w-full max-w-md  dark:bg-slate-900 p-10 rounded-[2.5rem] shadow-2xl border dark:border-slate-800">
           <h2 className="text-3xl font-black text-center dark:text-white uppercase mb-8 tracking-tighter">
             Login
           </h2>

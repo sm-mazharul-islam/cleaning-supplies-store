@@ -40,7 +40,7 @@ const Partners = () => {
   return (
     <section className="py-12 bg-main border-y border-main-border transition-colors duration-500 overflow-hidden">
       {/* সেকশন টাইটেল */}
-      <div className="container mx-auto px-6 mb-8 text-center lg:text-left">
+      <div className="container mx-auto px-6 mb-8 text-center lg:text-center">
         <p className="text-[10px] font-black uppercase tracking-[0.3em] text-main-muted">
           Trusted by Industry Leaders &{" "}
           <span className="text-brand-primary">Global Brands</span>

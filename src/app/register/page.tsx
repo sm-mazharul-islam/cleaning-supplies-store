@@ -87,7 +87,7 @@ const RegisterForm = () => {
       <div className="min-h-screen flex items-center justify-center p-4 transition-colors duration-500">
         <form
           onSubmit={handleSubmit}
-          className="w-full max-w-md bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-2xl border dark:border-slate-800 transition-all"
+          className="w-full max-w-md p-8 rounded-[2.5rem] shadow-2xl border dark:border-slate-800 transition-all"
         >
           <h2 className="text-3xl font-black text-center dark:text-white uppercase mb-8 tracking-tighter">
             Register
@@ -169,7 +169,7 @@ const RegisterForm = () => {
 
           <button
             disabled={isLoading}
-            className="w-full bg-slate-900 dark:bg-blue-600 text-white p-4 rounded-2xl font-black mt-8 uppercase tracking-widest shadow-xl hover:opacity-90 active:scale-95 transition-all disabled:opacity-50"
+            className="w-full  dark:bg-blue-600  p-4 rounded-2xl font-black mt-8 uppercase tracking-widest shadow-xl hover:opacity-90 active:scale-95 transition-all disabled:opacity-50"
           >
             {isLoading ? "Creating Account..." : "Sign Up Now"}
           </button>

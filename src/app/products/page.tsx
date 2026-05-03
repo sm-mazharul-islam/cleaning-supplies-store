@@ -161,8 +161,8 @@ const Products: React.FC = () => {
             Next
           </button>
         </div>
-        <Footer />
       </Container>
+      <Footer />
     </>
   );
 };
