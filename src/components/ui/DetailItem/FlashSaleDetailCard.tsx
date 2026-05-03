@@ -35,7 +35,7 @@ const FlashSaleDetailCard: React.FC<Props> = ({ item }) => {
   );
 
   return (
-    <div className="bg-main rounded-card shadow-sm border border-main-border overflow-hidden animate-in fade-in zoom-in-95 duration-700 transition-colors">
+    <div className="bg-main rounded-card shadow-sm  overflow-hidden animate-in fade-in zoom-in-95 duration-700 transition-colors">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-xl p-md lg:p-2xl">
         {/* Left: Product Image Section */}
         <div className="relative group">
@@ -166,8 +166,8 @@ const FlashSaleDetailCard: React.FC<Props> = ({ item }) => {
               </div>
 
               {/* Add to Cart Button */}
-              <button className="flex-1 w-full bg-brand-primary hover:bg-brand-primary/90 text-white py-5 rounded-btn font-black flex items-center justify-center gap-3 transition-all transform active:scale-95 shadow-xl shadow-brand-primary/20 group">
-                <FaShoppingCart className="group-hover:translate-x-1 transition-transform" />
+              <button className="flex-1 w-full bg-brand-primary dark:bg-brand-secondary hover:opacity-90 py-5 rounded-btn font-black flex items-center justify-center gap-3 transition-all transform active:scale-95 shadow-xl shadow-brand-primary/20 group">
+                <FaShoppingCart className="group-hover:translate-x-1 transition-transform " />
                 ADD TO CART — ${(salePrice * quantity).toFixed(2)}
               </button>
             </div>
