@@ -45,7 +45,7 @@ const TopCategoriesCard = () => {
   ];
 
   return (
-    <section className="py-24 bg-base-100 transition-colors duration-300">
+    <section className=" bg-base-100 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-20">

@@ -1,28 +1,62 @@
-import Navbar from "@/components/shared/Navbar";
-import HomePage from "./home/page";
-import Container from "@/components/shared/Container";
-import Header from "@/components/shared/Header";
-import TopCategoriesCard from "@/components/ui/TopCategoriesCard";
-import Footer from "@/components/shared/Footer";
-import HomeFlashSale from "@/components/homeFlashSale/HomeFlashSale";
-import HomeProducts from "@/components/homeProducts/HomeProducts";
-import Features from "@/components/features/Features";
-import Testimonials from "@/components/testimonials/Testimonials";
+import {
+  Header,
+  Container,
+  Footer,
+  Features,
+  HomeFlashSale,
+  TopCategoriesCard,
+  HomeProducts,
+  Testimonials,
+  Partners,
+  Statistic,
+  // HowItWorks,
+  BlogPreview,
+  Newsletter,
+  CTA,
+} from "@/components/homeSections";
 
 const Home = () => {
   return (
     <>
+      {/* ১. হিরো ব্যানার */}
       <Header />
+
+      {/* ২. পার্টনার লোগো স্লাইডার (হিরোর ঠিক নিচে ভালো দেখায়) */}
+      <Partners />
+
       <Container>
-        {/* <Navbar /> */}
-        <Features />
-        <HomeFlashSale />
-        {/* <HomePage /> */}
-        <TopCategoriesCard />
-        {/* <Products /> */}
-        <HomeProducts />
-        <Testimonials />
+        <div className="space-y-24 py-16">
+          {/* ৩. স্টোরের বিশেষত্ব */}
+          <Features />
+
+          <Statistic />
+          {/* ৪. ক্যাটাগরি গ্রিড */}
+          <TopCategoriesCard />
+
+          {/* ৫. অফার সেকশন */}
+          <HomeFlashSale />
+
+          {/* ৬. প্রধান পণ্যসমূহ */}
+          <HomeProducts />
+
+          {/* ৭. কিভাবে অর্ডার করবেন */}
+          {/* <HowItWorks /> */}
+
+          {/* ৮. ক্লায়েন্ট রিভিউ */}
+          <Testimonials />
+
+          {/* ৯. ব্লগ বা টিপস */}
+          <BlogPreview />
+        </div>
       </Container>
+
+      {/* ১০. সাবস্ক্রিপশন বক্স */}
+      <Newsletter />
+
+      {/* ১১. কল টু অ্যাকশন */}
+      <CTA />
+
+      {/* ১২. ফুটার */}
       <Footer />
     </>
   );

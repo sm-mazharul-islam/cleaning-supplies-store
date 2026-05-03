@@ -30,7 +30,7 @@ const HomeProducts = async () => {
           href="/products"
           className="lg:flex lg:justify-between m-6 lg:m-0"
         >
-          <button className="btn  btn-neutral lg:mr-[230px] rounded-full text-white pr-[10px] ">
+          <button className="btn  btn-neutral lg:mr-[230px] rounded-full  pr-[10px] ">
             View All
             <svg
               className="w-[30px]"

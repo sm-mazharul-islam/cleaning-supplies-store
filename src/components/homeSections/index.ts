@@ -16,3 +16,4 @@ export { default as BlogPreview } from "../home/blogPreview/BlogPreview";
 export { default as Newsletter } from "../home/newsletter/NewsLetter";
 export { default as CTA } from "../home/callToAction/Cta";
 export { default as Faq } from "../home/faq/Faq";
+export { default as Statistic } from "../home/statistics/Statistics";

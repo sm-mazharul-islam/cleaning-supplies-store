@@ -37,39 +37,53 @@ const blogs = [
 
 const BlogPreview = () => {
   return (
-    <section className="py-20 bg-main transition-colors duration-500">
-      <div className="container mx-auto px-4">
+    <section className="relative bg-main transition-colors duration-500 overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-primary/5 blur-[100px] rounded-full opacity-50"></div>
+
+      {/* 
+          নিচের ডিভ-টি (container) পুরো সেকশনের উইডথ কন্ট্রোল করে। 
+          আপনি চাইলে 'max-w-7xl' কে 'max-w-6xl' বা 'max-w-5xl' করে উইডথ কমাতে পারেন।
+      */}
+      <div className="container max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
-            <span className="text-brand-primary font-black uppercase tracking-[0.2em] text-[10px] bg-brand-primary/10 px-3 py-1 rounded-full border border-brand-primary/20">
+            <span className="text-brand-primary font-black uppercase tracking-[0.3em] text-[10px] bg-brand-primary/10 px-4 py-1.5 rounded-full">
               Latest Insights
             </span>
-            <h2 className="text-4xl md:text-5xl font-black text-main-content tracking-tighter mt-4">
+            <h2 className="text-3xl md:text-5xl font-black text-main-content tracking-tighter mt-6 leading-tight">
               Cleaning Expertise <br /> &{" "}
-              <span className="text-brand-primary">Industry News</span>
+              <span className="bg-gradient-to-r from-brand-primary to-blue-400 bg-clip-text text-transparent">
+                Industry News
+              </span>
             </h2>
           </div>
+
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="group flex items-center gap-2 text-brand-primary font-bold text-sm uppercase tracking-widest"
+            className="group flex items-center gap-3 text-brand-primary font-black text-[10px] uppercase tracking-[0.2em] border-b-2 border-brand-primary/20 pb-1 hover:border-brand-primary transition-all"
           >
             Explore All Posts{" "}
             <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
           </motion.button>
         </div>
 
-        {/* Blog Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* 
+            Blog Cards Grid: 
+            এখানে 'gap-8' কে বাড়িয়ে বা কমিয়ে কার্ডগুলোর মাঝখানের দূরত্ব ঠিক করতে পারেন।
+        */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogs.map((blog, index) => (
             <motion.div
               key={blog.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.8 }}
-              className="group bg-white/5 border border-main-border rounded-card overflow-hidden hover:border-brand-primary/50 transition-colors shadow-2xl"
+              transition={{ delay: index * 0.1, duration: 0.8 }}
+              // Dark Mode: No Border, Light Mode: Very Faint Border
+              className="group bg-base-200/40 dark:bg-white/[0.02] border border-base-content/5 dark:border-0 rounded-[2.5rem] overflow-hidden backdrop-blur-xl hover:shadow-2xl hover:shadow-brand-primary/5 transition-all duration-500"
             >
               {/* Image Container */}
               <div className="relative h-64 overflow-hidden">
@@ -77,31 +91,34 @@ const BlogPreview = () => {
                   src={blog.image}
                   alt={blog.title}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100"
+                  className="object-cover group-hover:scale-110 transition-transform duration-1000 opacity-90"
                 />
-                <div className="absolute top-4 left-4 bg-brand-primary text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-lg">
+                <div className="absolute top-4 left-4 bg-brand-primary text-white text-[9px] font-black uppercase px-3 py-1.5 rounded-xl shadow-lg">
                   {blog.category}
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6 space-y-4">
-                <div className="flex items-center gap-2 text-main-muted text-xs font-semibold">
+              <div className="p-8 space-y-4">
+                <div className="flex items-center gap-2 text-base-content/40 text-[10px] font-black uppercase tracking-widest">
                   <FaCalendarAlt className="text-brand-primary" />
                   {blog.date}
                 </div>
-                <h3 className="text-xl font-black text-main-content leading-tight group-hover:text-brand-primary transition-colors">
+
+                <h3 className="text-xl font-black text-base-content leading-tight group-hover:text-brand-primary transition-colors line-clamp-2">
                   {blog.title}
                 </h3>
-                <p className="text-sm text-main-muted leading-relaxed line-clamp-3">
+
+                <p className="text-sm text-base-content/50 leading-relaxed line-clamp-2 font-medium">
                   {blog.excerpt}
                 </p>
-                <div className="pt-4 border-t border-main-border flex justify-between items-center">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-main-content">
+
+                <div className="pt-6 mt-2 border-t border-base-content/5 flex justify-between items-center group/btn">
+                  <span className="text-[9px] font-black uppercase tracking-[0.2em] text-base-content/40 group-hover:text-brand-primary transition-colors">
                     Read Full Article
                   </span>
-                  <div className="w-8 h-8 rounded-full bg-brand-primary/10 flex items-center justify-center group-hover:bg-brand-primary group-hover:text-white transition-all">
-                    <FaArrowRight className="text-xs" />
+                  <div className="w-10 h-10 rounded-2xl bg-base-300 dark:bg-white/5 flex items-center justify-center group-hover:bg-brand-primary group-hover:text-white transition-all shadow-inner">
+                    <FaArrowRight className="text-[10px] group-hover/btn:translate-x-0.5 transition-transform" />
                   </div>
                 </div>
               </div>

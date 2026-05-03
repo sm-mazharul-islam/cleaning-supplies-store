@@ -38,7 +38,7 @@ const Features = () => {
 
   return (
     /* bg-base-100 shifts between white and your dark slate theme */
-    <section className="py-24 bg-base-100 overflow-hidden transition-colors duration-300">
+    <section className=" bg-base-100 overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header Section */}
         <div className="text-center mb-20">
@@ -105,7 +105,7 @@ const Features = () => {
 
         {/* Bottom Decorative Section */}
         {/* bg-base-200 for a subtle "island" look in dark mode */}
-        <div className="mt-20 p-10 rounded-[3rem] bg-base-200 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl border border-base-content/5">
+        <div className="mt-20 p-10 rounded-[3rem] bg-base-200 flex flex-col md:flex-row items-center justify-between gap-8  border border-base-content/5">
           <div>
             <h4 className="text-2xl font-black mb-2 tracking-tight text-base-content">
               Ready for a deeper clean?
