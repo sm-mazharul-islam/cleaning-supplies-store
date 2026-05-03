@@ -146,7 +146,7 @@ export default function AllOrders() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 md:py-12 font-sans bg-base-100 text-base-content transition-colors duration-300">
+    <div className="max-w-7xl mx-auto px-0 md:px-4 py-0 md:py-12 font-sans bg-base-100 text-base-content transition-colors duration-300">
       <ToastContainer />
 
       {/* Page Header */}

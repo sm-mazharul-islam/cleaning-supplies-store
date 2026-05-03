@@ -260,7 +260,7 @@ const Header = () => {
             </div>
 
             {/* Content Section */}
-            <div className="relative z-10 h-full flex items-center px-6 lg:px-20">
+            <div className="relative z-10 h-full flex items-center px-6 mt-12 md:mt-0 lg:mt-0 lg:px-20">
               <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-12">
                 {/* Left Side: Typography & CTA */}
                 <AnimatePresence mode="wait">
@@ -284,13 +284,13 @@ const Header = () => {
                       </motion.span>
                       <motion.h1
                         variants={itemVariants}
-                        className="text-4xl md:text-7xl font-black text-main-content tracking-tighter leading-[1] mb-6 drop-shadow-2xl"
+                        className="text-3xl md:text-7xl font-black text-main-content tracking-tighter leading-[1] mb-2 md:mb-6 drop-shadow-2xl"
                       >
                         {slide.title}
                       </motion.h1>
                       <motion.p
                         variants={itemVariants}
-                        className="text-sm md:text-xl text-main-muted max-w-xl mb-10 font-medium leading-relaxed"
+                        className="text-sm md:text-xl text-main-muted max-w-xl mb-0 md:mb-10 font-medium leading-relaxed"
                       >
                         {slide.description}
                       </motion.p>
@@ -310,7 +310,7 @@ const Header = () => {
                 </AnimatePresence>
 
                 {/* Right Side: Interesting Interactive Elements */}
-                <div className="hidden lg:flex justify-end">
+                <div className="hidden lg:flex justify-end mt-20">
                   <div className="relative w-full max-w-md">
                     {/* Floating Statistics Grid */}
                     <AnimatePresence mode="wait">

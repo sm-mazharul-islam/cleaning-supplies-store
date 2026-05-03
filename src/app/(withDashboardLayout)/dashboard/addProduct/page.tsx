@@ -112,7 +112,7 @@ const AddProductPage = () => {
     <div className="min-h-screen pb-20 bg-slate-50 dark:bg-[#0f172a] transition-colors duration-500 pt-10">
       <ToastContainer position="top-right" theme="colored" />
 
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-0 md:px-4">
         {/* Title Section */}
         <div className="mb-12">
           <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tighter uppercase">

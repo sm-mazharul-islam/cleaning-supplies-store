@@ -21,10 +21,8 @@ export default function ProtectedRoute({
   }, []);
 
   useEffect(() => {
-    // লোডিং শেষ হওয়ার পরই কেবল রিডাইরেক্ট লজিক কাজ করবে
     if (isMounted && !isLoading) {
       if (!user) {
-        // লগইন করার পর যেন আগের পেজেই ফিরে আসতে পারে
         router.push(`/login?redirect=${pathname}`);
       } else if (allowedRoles && !allowedRoles.includes(user.role)) {
         router.push("/unauthorized");
@@ -32,7 +30,6 @@ export default function ProtectedRoute({
     }
   }, [user, isLoading, router, allowedRoles, pathname, isMounted]);
 
-  // মাউন্ট হওয়া এবং লোডিং শেষ হওয়ার আগে স্পিনার দেখাবে
   if (!isMounted || isLoading) {
     return (
       <div className="h-screen flex flex-col items-center justify-center bg-base-100 gap-4">
@@ -44,7 +41,6 @@ export default function ProtectedRoute({
     );
   }
 
-  // ইউজার অথরাইজড হলেই কেবল চিলড্রেন দেখাবে
   const isAuthorized =
     user && (!allowedRoles || allowedRoles.includes(user.role));
 
