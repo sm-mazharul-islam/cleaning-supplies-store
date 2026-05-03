@@ -17,24 +17,45 @@ export default function ManageUser() {
   const [loading, setLoading] = useState(true);
 
   const fetchUsers = async () => {
-    const token = localStorage.getItem("token");
+    // ১. টোকেন গেট করা
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("token") : null;
+
+    // ২. বেস ইউআরএল সেট করা (প্রোডাকশন বা লোকাল)
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
     try {
-      const res = await fetch("http://localhost:5000/api/v1/user/all-users", {
-        headers: { Authorization: `Bearer ${token}` },
+      setLoading(true);
+
+      const res = await fetch(`${baseUrl}/api/v1/user/all-users`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
+
+      // ৩. রেসপন্স চেক করা
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Unauthorized access");
+      }
+
       const result = await res.json();
+
       if (result.success) {
         setUsers(result.data);
       } else {
         toast.error(result.message || "Failed to load users");
       }
-    } catch (error) {
-      toast.error("Network error. Please try again.");
+    } catch (error: any) {
+      // ৪. স্পেসিফিক এরর মেসেজ দেখানো
+      console.error("Fetch Error:", error);
+      toast.error(error.message || "Network error. Please try again.");
     } finally {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     fetchUsers();
   }, []);

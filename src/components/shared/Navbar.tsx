@@ -195,7 +195,7 @@ const Navbar = () => {
               </Link>
               <Link
                 href="/register"
-                className={`px-6 py-3 rounded-btn text-[10px] font-black uppercase ${isScrolled ? "bg-primary text-white" : "bg-white text-neutral"}`}
+                className={`px-6 py-3 rounded-btn text-[10px] font-black uppercase }`}
               >
                 Register
               </Link>

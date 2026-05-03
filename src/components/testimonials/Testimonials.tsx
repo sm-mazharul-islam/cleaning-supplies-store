@@ -9,7 +9,6 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { FaQuoteLeft, FaStar } from "react-icons/fa";
 import Image from "next/image";
 
-// ডাটা টাইপ ইন্টারফেস
 interface TReview {
   _id: string;
   userName: string;
@@ -25,7 +24,6 @@ const Testimonials = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        // এই URL টি ব্রাউজারে কপি করে পেস্ট করে দেখুন ডাটা আসে কি না
         const url = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/testimonials`;
         console.log("Fetching from:", url); // ডিবাগিং এর জন্য
 
