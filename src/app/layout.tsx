@@ -4,6 +4,7 @@ import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "@/context/AuthContext";
+import Script from "next/script"; // ১. Script কম্পোনেন্ট ইমপোর্ট করুন
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,48 +19,50 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // Removed the hardcoded data-theme="light" to allow dynamic switching
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* 
-          This script runs immediately before the page is painted.
-          It checks localStorage for a saved theme and applies it to the <html> tag.
-          This prevents the "flash" of light mode for dark mode users.
+          ২. ইনলাইন স্ক্রিপ্টের বদলে Next.js এর Script কম্পোনেন্ট ব্যবহার করা হয়েছে।
+          এটি 'beforeInteractive' স্ট্র্যাটেজি ব্যবহার করে যাতে পেজ রেন্ডার হওয়ার আগেই থিম সেট হয়।
         */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  const savedTheme = localStorage.getItem('theme');
-                  const theme = savedTheme || 'light';
-                  document.documentElement.setAttribute('data-theme', theme);
-                } catch (e) {
-                  console.error("Theme initialization failed", e);
+        <Script id="theme-initializer" strategy="beforeInteractive">
+          {`
+            (function() {
+              try {
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                // যদি আপনি Tailwind-এর 'dark' ক্লাস ব্যবহার করেন তবে নিচের লাইনটি কার্যকর হবে
+                if (savedTheme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
                 }
-              })()
-            `,
-          }}
-        />
+              } catch (e) {
+                console.error("Theme set failed:", e);
+              }
+            })()
+          `}
+        </Script>
       </head>
       <body
         className={`${inter.className} min-h-screen bg-base-100 transition-colors duration-300`}
       >
         <AuthProvider>
-          {/* Main content wrapper */}
-          <main>{children}</main>
+          <div className="flex flex-col min-h-screen">
+            <main className="flex-grow">{children}</main>
+          </div>
 
-          {/* Global Toast Notifications */}
           <ToastContainer
             position="top-right"
             autoClose={3000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick
+            rtl={false}
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            theme="colored" // This will automatically adapt better to theme changes
+            theme="colored"
           />
         </AuthProvider>
       </body>

@@ -4,13 +4,17 @@ import DashboardSideBar from "@/components/dashboard/dashboardDrawer/SideBar";
 import ProtectedRoute from "@/components/privateRoute/ProtectedRoute";
 
 /**
- * This is your Dashboard Layout.
- * Any page inside the 'dashboard' folder will now be private.
+ * Dashboard Layout with Theme Support
+ * This wrapper ensures the background and text colors adapt to the system/toggle theme.
  */
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <ProtectedRoute>
-      <DashboardSideBar>{children}</DashboardSideBar>
+      <div className="min-h-screen  transition-colors duration-500">
+        <DashboardSideBar>
+          <main className="p-4 md:p-8">{children}</main>
+        </DashboardSideBar>
+      </div>
     </ProtectedRoute>
   );
 };

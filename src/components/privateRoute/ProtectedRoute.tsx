@@ -1,42 +1,52 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-
-interface ProtectedRouteProps {
-  children: React.ReactNode;
-  allowedRoles?: ("admin" | "user")[]; // Optional: restrict to specific roles
-}
+import { useRouter, usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function ProtectedRoute({
   children,
   allowedRoles,
-}: ProtectedRouteProps) {
+}: {
+  children: React.ReactNode;
+  allowedRoles?: ("admin" | "user")[];
+}) {
   const { user, isLoading } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    if (!isLoading) {
-      // 1. If not logged in, go to login
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    // লোডিং শেষ হওয়ার পরই কেবল রিডাইরেক্ট লজিক কাজ করবে
+    if (isMounted && !isLoading) {
       if (!user) {
-        router.push("/login");
-      }
-      // 2. If role is not allowed, go to unauthorized
-      else if (allowedRoles && !allowedRoles.includes(user.role)) {
+        // লগইন করার পর যেন আগের পেজেই ফিরে আসতে পারে
+        router.push(`/login?redirect=${pathname}`);
+      } else if (allowedRoles && !allowedRoles.includes(user.role)) {
         router.push("/unauthorized");
       }
     }
-  }, [user, isLoading, router, allowedRoles]);
+  }, [user, isLoading, router, allowedRoles, pathname, isMounted]);
 
-  if (isLoading) {
+  // মাউন্ট হওয়া এবং লোডিং শেষ হওয়ার আগে স্পিনার দেখাবে
+  if (!isMounted || isLoading) {
     return (
-      <div className="h-screen flex items-center justify-center">
-        <span className="loading loading-spinner loading-lg text-blue-600"></span>
+      <div className="h-screen flex flex-col items-center justify-center bg-base-100 gap-4">
+        <span className="loading loading-ring loading-lg text-blue-600"></span>
+        <p className="text-xs font-black uppercase tracking-widest text-slate-500 animate-pulse">
+          Verifying Access...
+        </p>
       </div>
     );
   }
 
-  // Only show the content if authorized
-  return user ? <>{children}</> : null;
+  // ইউজার অথরাইজড হলেই কেবল চিলড্রেন দেখাবে
+  const isAuthorized =
+    user && (!allowedRoles || allowedRoles.includes(user.role));
+
+  return isAuthorized ? <>{children}</> : null;
 }

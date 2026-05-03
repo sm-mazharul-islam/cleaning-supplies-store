@@ -4,11 +4,14 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "ds-cdn.dubaistore.com",
-        hostname: "**",
+        hostname: "**", // এটি যেকোনো HTTPS ডোমেইন থেকে ছবি লোড করার অনুমতি দেবে
+      },
+      {
+        protocol: "http",
+        hostname: "**", // এটি যেকোনো HTTP ডোমেইন থেকে ছবি লোড করার অনুমতি দেবে
       },
     ],
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
