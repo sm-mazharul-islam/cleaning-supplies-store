@@ -1,7 +1,11 @@
 import Container from "@/components/shared/Container";
 import CategoryList from "@/components/ui/CategoryList/CategoryList";
 
-const CategoriesLayout = ({ children }: { children: string }) => {
+export default function CategoriesLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <Container>
       <div className="flex space-x-4">
@@ -12,6 +16,4 @@ const CategoriesLayout = ({ children }: { children: string }) => {
       </div>
     </Container>
   );
-};
-
-export default CategoriesLayout;
+}
