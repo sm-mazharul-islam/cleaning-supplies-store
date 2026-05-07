@@ -17,17 +17,14 @@ const LoginForm = () => {
   const [showPass, setShowPass] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // --- টোকেন সেভ করার সঠিক মেথড ---
   const handleAuthSuccess = (token: string) => {
     if (!token) {
       toast.error("Authentication failed: No token received.");
       return;
     }
 
-    // ১. সরাসরি লোকাল স্টোরেজে সেভ করা (এটি সবচেয়ে নিরাপদ)
     localStorage.setItem("accessToken", token);
 
-    // ২. কনটেক্সট আপডেট করা (যা রিডাইরেকশন হ্যান্ডেল করবে)
     login(token);
 
     toast.success("✨ Gorgeous! Welcome back.");
@@ -50,7 +47,7 @@ const LoginForm = () => {
 
       if (!res.ok) throw new Error(data.message || "Login failed");
 
-      // ব্যাকএন্ড যদি ডাটা result.data.accessToken এ পাঠায় তবে সেটি নিশ্চিত করুন
+   
       const token = data.data?.accessToken || data.token || data.accessToken;
 
       if (token) {
@@ -85,7 +82,6 @@ const LoginForm = () => {
       const data = await res.json();
       if (!res.ok) throw new Error("Google Sync Failed");
 
-      // গুগল সিঙ্কিংয়ের ক্ষেত্রেও টোকেন প্রপার্টি চেক করুন
       const token = data.data?.accessToken || data.token || data.accessToken;
 
       if (token) {

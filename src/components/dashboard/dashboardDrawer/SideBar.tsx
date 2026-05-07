@@ -50,8 +50,9 @@ const DashboardSideBar: React.FC<{ children: ReactNode }> = ({ children }) => {
     { name: "Manage Items", href: "/dashboard/allSupply", icon: FaBoxOpen },
     { name: "All Orders", href: "/dashboard/allOrders", icon: FaBoxOpen },
     { name: "Add Product", href: "/dashboard/addProduct", icon: FaPlusSquare },
-    { name: "Categories", href: "/dashboard/users", icon: FaUsers },
-    { name: "Settings", href: "/dashboard/users", icon: FaUsers },
+    { name: "Add-Categories", href: "/dashboard/addCategories", icon: FaUsers },
+    { name: "All-Categories", href: "/dashboard/allCategories", icon: FaUsers },
+    { name: "Settings", href: "/dashboard/setting", icon: FaUsers },
   ];
 
   const userItems = [
