@@ -114,12 +114,14 @@ const NavbarTwo = () => {
                       className="flex items-center gap-3 p-1 pr-3 rounded-2xl hover:bg-base-300 transition-all cursor-pointer border border-base-content/5"
                     >
                       <div className="w-10 h-10 rounded-xl overflow-hidden ring-2 ring-blue-600/20">
-                        <img
+                        <Image
                           src={
                             user.pictureUrl ||
                             `https://ui-avatars.com/api/?name=${user.userName}&background=2563eb&color=ffffff`
                           }
                           alt="User"
+                          width={0}
+                          height={0}
                           className="w-full h-full object-cover"
                         />
                       </div>
