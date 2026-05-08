@@ -19,7 +19,6 @@ const NavbarTwo = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState<UserPayload | null>(null);
 
-  // ইউজার ডাটা চেক করার ফাংশন
   const checkUser = useCallback(() => {
     const token =
       typeof window !== "undefined" ? localStorage.getItem("token") : null;
@@ -38,7 +37,6 @@ const NavbarTwo = () => {
 
   useEffect(() => {
     checkUser();
-    // লগইন/রেজিস্টার ফর্মের সাথে সিঙ্ক রাখার জন্য ইভেন্ট লিসেনার
     window.addEventListener("authChange", checkUser);
     window.addEventListener("storage", checkUser);
 
@@ -61,7 +59,6 @@ const NavbarTwo = () => {
     { name: "Flash Sale", href: "/flashsale" },
   ];
 
-  // ড্যাশবোর্ড লিঙ্ক লজিক
   if (user) navLinks.push({ name: "Dashboard", href: "/dashboard" });
 
   return (
