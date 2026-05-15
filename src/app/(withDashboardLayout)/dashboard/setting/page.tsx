@@ -27,7 +27,9 @@ export default function SettingPage() {
     const fetchUserData = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await fetch("http://localhost:5000/api/v1/user/profile", {
+        const baseUrl =
+          process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+        const res = await fetch(`${baseUrl}/api/v1/user/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const result = await res.json();
@@ -90,20 +92,19 @@ export default function SettingPage() {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch(
-        "http://localhost:5000/api/v1/user/profile/update",
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            userName: profile.userName,
-            pictureUrl: profile.pictureUrl,
-          }),
+      const baseUrl =
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const res = await fetch(`${baseUrl}/api/v1/user/profile/update`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-      );
+        body: JSON.stringify({
+          userName: profile.userName,
+          pictureUrl: profile.pictureUrl,
+        }),
+      });
       const data = await res.json();
       if (data.success) toast.success("Profile updated!");
     } catch (error) {
@@ -120,13 +121,12 @@ export default function SettingPage() {
     ) {
       const token = localStorage.getItem("token");
       try {
-        const res = await fetch(
-          "http://localhost:5000/api/v1/user/profile/delete",
-          {
-            method: "DELETE",
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        );
+        const baseUrl =
+          process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+        const res = await fetch(`${baseUrl}/api/v1/user/profile/delete`, {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        });
         if (res.ok) {
           localStorage.removeItem("token");
           window.location.href = "/";

@@ -13,7 +13,8 @@ const DetailPage = async ({ params }: DetailPageProps) => {
   const productId = resolvedParams.id;
 
   // ২. এপিআই ফেচিং (কানেকশন নিশ্চিত করতে লোকাল আইপি ব্যবহার)
-  const fetchUrl = `http://localhost:5000/api/v1/products/${productId}`;
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+  const fetchUrl = `${baseUrl}/api/v1/products/${productId}`;
 
   try {
     const res = await fetch(fetchUrl, {

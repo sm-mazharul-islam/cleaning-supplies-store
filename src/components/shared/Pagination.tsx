@@ -15,7 +15,7 @@ const Pagination = ({ totalPages, currentPage }: PaginationProps) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", page.toString());
 
-    // ইউআরএল আপডেট করবে: /dashboard/allSupply?page=2
+    //dashboard/allSupply?page=2
     router.push(`/dashboard/allSupply?${params.toString()}`);
   };
 

@@ -63,17 +63,16 @@ export default function ManageUser() {
   const handleRoleChange = async (id: string, newRole: string) => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(
-        `http://localhost:5000/api/v1/user/update-role/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ role: newRole }),
+      const baseUrl =
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const res = await fetch(`${baseUrl}/api/v1/user/update-role/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-      );
+        body: JSON.stringify({ role: newRole }),
+      });
       const result = await res.json();
       if (result.success) {
         toast.success(`Role updated to ${newRole}`);
@@ -90,13 +89,12 @@ export default function ManageUser() {
 
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(
-        `http://localhost:5000/api/v1/user/admin-delete/${id}`,
-        {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
+      const baseUrl =
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const res = await fetch(`${baseUrl}/api/v1/user/admin-delete/${id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
       const result = await res.json();
       if (result.success) {
         toast.warn("User deleted successfully");

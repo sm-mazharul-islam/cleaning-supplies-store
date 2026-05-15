@@ -30,7 +30,7 @@ const Testimonials = () => {
         const res = await fetch(url, { cache: "no-store" });
 
         if (!res.ok) {
-          throw new Error(`HTTP Error! Status: ${res.status}`); // এখানে আপনার 404 এরর ধরা পড়বে
+          throw new Error(`HTTP Error! Status: ${res.status}`);
         }
 
         const responseData = await res.json();
