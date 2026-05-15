@@ -19,7 +19,6 @@ const DetailCard = ({ item }: { item: TProduct }) => {
     try {
       const token = localStorage.getItem("accessToken");
 
-      // আরও শক্তিশালী চেক (Handles empty, undefined, or null strings)
       if (!token || token === "undefined" || token === "null") {
         toast.error("Please login first to place an order!", {
           position: "top-center",
@@ -30,10 +29,10 @@ const DetailCard = ({ item }: { item: TProduct }) => {
       let userEmail = "";
       try {
         const decoded: any = jwtDecode(token);
-        userEmail = decoded?.email; // নিশ্চিত করুন আপনার টোকেনে 'email' কি (key) টাই আছে
+        userEmail = decoded?.email;
       } catch (decodeErr) {
         toast.error("Session expired or invalid. Please login again.");
-        localStorage.removeItem("accessToken"); // ইনভ্যালিড টোকেন মুছে ফেলুন
+        localStorage.removeItem("accessToken");
         return;
       }
 
@@ -62,7 +61,7 @@ const DetailCard = ({ item }: { item: TProduct }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Bearer এর স্পেলিং এবং স্পেস চেক করুন
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(orderPayload),
         },
@@ -81,91 +80,91 @@ const DetailCard = ({ item }: { item: TProduct }) => {
       toast.error(error.message || "Failed to add order");
     }
   };
+
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10 font-sans transition-colors duration-500">
+    <div className="max-w-7xl mx-auto px-4 py-6 md:py-12 font-sans transition-colors duration-500 ">
       <ToastContainer />
 
-      {/* Main Container with Bento Design */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 rounded-card p-6 md:p-12 shadow-sm border border-base-300 mb-16 transition-all duration-500 bg-base-100">
+      {/* Main Bento Grid Container */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 rounded-[2rem] md:rounded-[3rem] p-4 md:p-10 lg:p-14 shadow-2xl border border-base-300 mb-12 md:mb-20 transition-all duration-500  backdrop-blur-md">
         {/* Left Section: Visual Assets */}
-        <div className="space-y-6">
-          {/* High-Performance Image Container */}
-          <div className="relative aspect-square rounded-card overflow-hidden border border-base-300 group bg-base-200">
+        <div className="space-y-6 md:space-y-8">
+          {/* Main Image with Hover Effect */}
+          <div className="relative aspect-square w-full rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border border-base-300 group ">
             <Image
               src={item.image || "/placeholder-image.png"}
               fill
-              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover transition-transform duration-1000 group-hover:scale-110"
               alt={item.title || "Product Image"}
               priority
             />
-            {/* Glassmorphism Badge */}
-            <div className="absolute top-6 left-6 bg-base-100/40 backdrop-blur-md px-4 py-2 rounded-xl border border-base-300 shadow-sm">
-              <p className="text-[10px] font-black uppercase tracking-widest text-primary">
+            {/* Glassmorphism Brand Badge */}
+            <div className="absolute top-4 md:top-8 left-4 md:left-8  backdrop-blur-xl px-4 md:px-6 py-2 md:py-3 rounded-2xl  shadow-xl">
+              <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-primary">
                 {item.brand}
               </p>
             </div>
           </div>
 
-          {/* Feature Highlights Grid */}
-          <div className="grid grid-cols-3 gap-4">
-            <div className="p-4 rounded-2xl text-center border border-base-300 bg-base-100/50 backdrop-blur-sm">
-              <FaShieldAlt className="mx-auto mb-2 text-primary text-xl" />
-              <p className="text-[9px] font-black uppercase opacity-70 tracking-widest">
-                Certified
-              </p>
-            </div>
-            <div className="p-4 rounded-2xl text-center border border-base-300 bg-base-100/50 backdrop-blur-sm">
-              <FaTruck className="mx-auto mb-2 text-success text-xl" />
-              <p className="text-[9px] font-black uppercase opacity-70 tracking-widest">
-                Fast Ship
-              </p>
-            </div>
-            <div className="p-4 rounded-2xl text-center border border-base-300 bg-base-100/50 backdrop-blur-sm">
-              <FaAward className="mx-auto mb-2 text-warning text-xl" />
-              <p className="text-[9px] font-black uppercase opacity-70 tracking-widest">
-                Original
-              </p>
-            </div>
+          {/* Features Grid - Responsive 3 Columns */}
+          <div className="grid grid-cols-3 gap-3 md:gap-6">
+            {[
+              { icon: FaShieldAlt, label: "Certified", color: "text-primary" },
+              { icon: FaTruck, label: "Fast Ship", color: "text-success" },
+              { icon: FaAward, label: "Original", color: "text-warning" },
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="p-3 md:p-6 rounded-2xl md:rounded-3xl text-center border border-base-300 bg-base-200/30 dark:bg-white/5 backdrop-blur-sm hover:border-primary/30 transition-colors"
+              >
+                <feature.icon
+                  className={`mx-auto mb-2 md:mb-3 text-lg md:text-2xl ${feature.color}`}
+                />
+                <p className="text-[8px] md:text-[10px] font-black uppercase opacity-60 tracking-widest leading-none">
+                  {feature.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Right Section: Content & Actions */}
-        <div className="flex flex-col justify-center">
-          {/* Header Metadata */}
-          <div className="flex items-center gap-3 mb-6">
-            <div className="bg-primary text-primary-content font-black uppercase tracking-widest py-1.5 px-4 rounded-full text-[10px] shadow-lg shadow-primary/20">
+        <div className="flex flex-col justify-center mt-6 lg:mt-0">
+          {/* Badge & Rating Row */}
+          <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-6 md:mb-8">
+            <div className="bg-primary text-primary-content font-black uppercase tracking-widest py-2 px-5 rounded-full text-[9px] md:text-[10px] shadow-lg shadow-primary/20">
               {item.brand} Official
             </div>
-            {/* Rating Component */}
-            <div className="flex items-center gap-1 bg-warning/10 px-3 py-1 rounded-full border border-warning/20">
-              <FaStar className="text-warning text-xs" />
-              <span className="text-xs font-black text-warning">
-                {item.rating || "4.5"}
+            <div className="flex items-center gap-1.5 bg-warning/10 px-4 py-1.5 rounded-full border border-warning/20">
+              <FaStar className="text-warning text-xs md:text-sm" />
+              <span className="text-[10px] md:text-xs font-black text-warning">
+                {item.rating || "4.8"}
               </span>
             </div>
           </div>
 
-          {/* Typography: Leading Tight & Uppercase */}
-          <h1 className="text-4xl md:text-5xl font-black mb-4 tracking-tighter text-base-content leading-tight uppercase transition-colors duration-300">
+          {/* Product Title */}
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6 tracking-tighter text-base-content leading-[1.1] uppercase transition-colors duration-300">
             {item.title}
           </h1>
 
-          <p className="text-base-content/60 font-medium text-lg mb-8 italic leading-relaxed max-w-md">
+          <p className="text-base-content/60 font-medium text-base md:text-xl mb-8 md:mb-10 italic leading-relaxed max-w-xl">
             {item.description}
           </p>
 
           {/* Pricing Architecture */}
-          <div className="flex items-baseline gap-4 mb-10">
-            <span className="text-5xl font-black text-primary tracking-tighter">
+          <div className="flex flex-wrap items-baseline gap-4 md:gap-6 mb-10 md:mb-12">
+            <span className="text-4xl md:text-6xl font-black text-primary tracking-tighter">
               ${item.salePrice}
             </span>
             {item.originalPrice && (
-              <del className="text-xl font-bold opacity-30">
+              <del className="text-lg md:text-2xl font-bold opacity-20">
                 ${item.originalPrice}
               </del>
             )}
             {item.originalPrice && (
-              <span className="ml-2 text-xs font-black bg-success/10 text-success px-3 py-1 rounded-lg uppercase tracking-widest">
+              <span className="text-[10px] md:text-xs font-black bg-success/10 text-success px-4 py-1.5 rounded-xl uppercase tracking-widest animate-pulse">
                 Save{" "}
                 {Math.round(
                   ((item.originalPrice - item.salePrice) / item.originalPrice) *
@@ -176,42 +175,50 @@ const DetailCard = ({ item }: { item: TProduct }) => {
             )}
           </div>
 
-          {/* Product Overview Bento Card */}
-          <div className="bg-base-200/50 p-8 rounded-card border border-base-300 mb-10 transition-all">
-            <h3 className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40 mb-4">
-              Product Overview
+          {/* Overview Card */}
+          <div className="bg-base-200/50 dark:bg-white/5 p-6 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] border border-base-300 mb-10 md:mb-12 group hover:border-primary/20 transition-all">
+            <h3 className="text-[9px] md:text-[11px] font-black uppercase tracking-[0.3em] opacity-40 mb-4 flex items-center gap-2">
+              <span className="w-8 h-[1px] bg-primary/40"></span> Product
+              Overview
             </h3>
-            <p className="text-base-content/80 leading-relaxed font-medium">
+            <p className="text-base-content/80 leading-relaxed font-medium text-sm md:text-base">
               {item.longDescription ||
-                "This premium product is designed for high-performance cleaning, ensuring durability and efficiency in every use. Perfect for both professional and residential environments."}
+                "This premium product is engineered for high-performance cleaning, ensuring maximum efficiency. Ideal for both commercial and luxury residential environments, delivering results that exceed industry standards."}
             </p>
           </div>
 
-          {/* Primary Action */}
-          <div className="space-y-4">
+          {/* Call to Action Row */}
+          <div className="space-y-5">
             <button
               onClick={handleAddToOrder}
-              className="btn btn-primary w-full h-16 rounded-btn font-black text-xs tracking-widest uppercase shadow-xl shadow-primary/20 active:scale-95 transition-all hover:shadow-2xl flex items-center justify-center gap-3"
+              className="btn btn-primary w-full h-16 md:h-20 rounded-[1.2rem] md:rounded-[2rem] font-black text-[10px] md:text-xs tracking-[0.2em] uppercase shadow-2xl shadow-primary/30 active:scale-95 transition-all hover:translate-y-[-2px] flex items-center justify-center gap-4"
             >
-              <FaShoppingCart className="text-lg" /> Add to My Order
+              <FaShoppingCart className="text-lg md:text-xl" /> Buy Now / Add to
+              Order
             </button>
 
-            <div className="flex items-center justify-center gap-4 py-2">
-              <p className="text-[10px] font-black opacity-30 uppercase tracking-[0.3em]">
-                Stock status:{" "}
-                <span className="text-success ml-1">In Stock</span>
-              </p>
+            <div className="flex items-center justify-center gap-4 py-2 border-t border-base-300/30">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-success animate-ping"></span>
+                <p className="text-[9px] md:text-[11px] font-black opacity-40 uppercase tracking-[0.2em]">
+                  Status: <span className="text-success ml-1">In Stock</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Discussion Section Component */}
-      <div className="rounded-card p-8 md:p-12 border border-base-300 transition-all duration-500 bg-base-100 shadow-sm">
-        <div className="mb-8">
-          <h2 className="text-2xl font-black uppercase tracking-tighter text-base-content">
-            Community <span className="text-primary">Discussion</span>
+      {/* Discussion Section Component - Fully Responsive Bento */}
+      <div className="rounded-[2rem] md:rounded-[3rem] p-6 md:p-14 lg:p-20 border border-base-300 transition-all duration-500  shadow-2xl">
+        <div className="mb-10 md:mb-16 text-center md:text-left">
+          <span className="text-primary font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">
+            Voice of users
+          </span>
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-base-content leading-none">
+            Community <span className="text-primary italic">Discussion</span>
           </h2>
+          <div className="h-1.5 w-20 bg-primary mt-6 rounded-full mx-auto md:mx-0"></div>
         </div>
         <CommunityDiscussion productId={item._id} />
       </div>
