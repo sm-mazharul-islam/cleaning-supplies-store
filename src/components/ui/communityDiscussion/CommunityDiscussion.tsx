@@ -155,7 +155,9 @@ const CommunityDiscussion = ({ productId }: { productId: string }) => {
                 alt="avatar"
               />
               <div className="flex-1">
-                <h4 className="font-bold text-sm uppercase">{c.userName}</h4>
+                <h4 className="font-bold text-sm uppercase text-black">
+                  {c.userName}
+                </h4>
                 <p className="text-slate-600 text-sm">{c.comment}</p>
 
                 {user && (
@@ -215,7 +217,7 @@ const CommunityDiscussion = ({ productId }: { productId: string }) => {
                           alt="reply"
                         />
                         <div>
-                          <h5 className="text-[9px] font-bold uppercase">
+                          <h5 className="text-[9px] font-bold uppercase text-black">
                             {r.userName}
                           </h5>
                           <p className="text-xs text-slate-600">{r.comment}</p>

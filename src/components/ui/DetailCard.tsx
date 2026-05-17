@@ -86,7 +86,7 @@ const DetailCard = ({ item }: { item: TProduct }) => {
       <ToastContainer />
 
       {/* Main Bento Grid Container */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 rounded-[2rem] md:rounded-[3rem] p-4 md:p-10 lg:p-14 shadow-2xl border border-base-300 mb-12 md:mb-20 transition-all duration-500  backdrop-blur-md">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 rounded-[2rem] md:rounded-[3rem] p-4 md:p-10 lg:p-14 shadow-2xl mb-12 md:mb-20 transition-all duration-500  backdrop-blur-md">
         {/* Left Section: Visual Assets */}
         <div className="space-y-6 md:space-y-8">
           {/* Main Image with Hover Effect */}
@@ -136,7 +136,7 @@ const DetailCard = ({ item }: { item: TProduct }) => {
             <div className="bg-primary text-primary-content font-black uppercase tracking-widest py-2 px-5 rounded-full text-[9px] md:text-[10px] shadow-lg shadow-primary/20">
               {item.brand} Official
             </div>
-            <div className="flex items-center gap-1.5 bg-warning/10 px-4 py-1.5 rounded-full border border-warning/20">
+            <div className="flex items-center gap-1.5 bg-warning/10 px-4 py-1.5 rounded-full ">
               <FaStar className="text-warning text-xs md:text-sm" />
               <span className="text-[10px] md:text-xs font-black text-warning">
                 {item.rating || "4.8"}
@@ -210,7 +210,7 @@ const DetailCard = ({ item }: { item: TProduct }) => {
       </div>
 
       {/* Discussion Section Component - Fully Responsive Bento */}
-      <div className="rounded-[2rem] md:rounded-[3rem] p-6 md:p-14 lg:p-20 border border-base-300 transition-all duration-500  shadow-2xl">
+      <div className="rounded-[2rem] md:rounded-[3rem] p-6 md:p-14 lg:p-20  transition-all duration-500  shadow-2xl">
         <div className="mb-10 md:mb-16 text-center md:text-left">
           <span className="text-primary font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">
             Voice of users
