@@ -27,10 +27,8 @@ export default function DashboardOrders() {
   const [loading, setLoading] = useState(true);
   const [userEmail, setUserEmail] = useState<string | null>(null);
 
-  // মডাল স্টেট - এটি অ্যাডমিন মেসেজ স্টোর করবে
   const [activeMessage, setActiveMessage] = useState<string | null>(null);
 
-  // ১. টোকেন থেকে ইউজার ইমেইল এক্সট্র্যাক্ট করা
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
@@ -48,7 +46,6 @@ export default function DashboardOrders() {
     }
   }, []);
 
-  // ২. ইউজারের নির্দিষ্ট অর্ডারগুলো ফেচ করা
   const fetchMyOrders = async () => {
     if (!userEmail) return;
     try {
@@ -77,7 +74,6 @@ export default function DashboardOrders() {
     fetchMyOrders();
   }, [userEmail]);
 
-  // ৩. অর্ডার ক্যানসেল করা
   const handleDeleteOrder = async (orderId: string) => {
     if (!confirm("Are you sure you want to cancel this order?")) return;
 

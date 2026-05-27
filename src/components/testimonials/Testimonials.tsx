@@ -25,7 +25,7 @@ const Testimonials = () => {
     const fetchReviews = async () => {
       try {
         const url = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/testimonials`;
-        console.log("Fetching from:", url); // ডিবাগিং এর জন্য
+        console.log("Fetching from:", url);
 
         const res = await fetch(url, { cache: "no-store" });
 
@@ -70,7 +70,7 @@ const Testimonials = () => {
         <div className="relative">
           {reviews.length > 0 ? (
             <Swiper
-              // স্লাইড সংখ্যা অনুযায়ী লুপ কন্ট্রোল (Swiper Loop Warning Fix)
+              //  (Swiper Loop Warning Fix)
               loop={reviews.length >= 3}
               speed={800}
               autoplay={{
@@ -124,7 +124,7 @@ const Testimonials = () => {
                               "https://i.ibb.co/5GzXkwq/user.png"
                             }
                             alt={item.userName}
-                            fill // fill এর সাথে sizes দেয়া বাধ্যতামূলক (Next.js Image Error Fix)
+                            fill //(Next.js Image Error Fix)
                             sizes="56px"
                             className="object-cover"
                           />

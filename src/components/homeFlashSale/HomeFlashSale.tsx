@@ -13,11 +13,10 @@ const HomeFlashSale = async () => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/api/v1/products/flash-sale`,
       {
-        next: { revalidate: 3600 }, // ১ ঘণ্টার জন্য ডাটা ক্যাশ হবে
+        next: { revalidate: 3600 },
       },
     );
 
-    // রেসপন্স চেক করা (Unexpected token '<' এরর হ্যান্ডলিং)
     if (!res.ok) {
       console.error(`Fetch failed with status: ${res.status}`);
       errorOccurred = true;
@@ -26,7 +25,6 @@ const HomeFlashSale = async () => {
       if (contentType && contentType.includes("application/json")) {
         const responseData = await res.json();
 
-        // ব্যাকএন্ড থেকে { success: true, data: [...] } ফরমেটে ডাটা আসবে
         flashSaleSupplies = responseData.data || [];
       } else {
         console.error("Backend sent HTML instead of JSON. Check your routes!");
@@ -71,7 +69,7 @@ const HomeFlashSale = async () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {flashSaleSupplies.length > 0 ? (
             flashSaleSupplies
-              .slice(0, 4) // শুধু প্রথম ৪টি প্রোডাক্ট রেন্ডার হবে
+              .slice(0, 4)
               .map((item: TProduct) => (
                 <FlashSaleCard key={item._id} item={item} />
               ))

@@ -26,7 +26,6 @@ export default function ProfileDetail() {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
-  // প্রোফাইল ডাটা ফেচিং
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem("accessToken");
@@ -64,7 +63,6 @@ export default function ProfileDetail() {
       </div>
     );
 
-  // তারিখ এবং সময় ফরম্যাট করার ফাংশন
   const formatFullDateTime = (date: string) => {
     if (!date) return "N/A";
     const d = new Date(date);

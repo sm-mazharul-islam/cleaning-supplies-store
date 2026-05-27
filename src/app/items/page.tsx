@@ -140,7 +140,7 @@ const Products: React.FC = () => {
             )}
 
             {/* Pagination Buttons */}
-            <div className="flex justify-center items-center mt-16 gap-6">
+            <div className="flex justify-center items-center mt-16 gap-6 mb-16">
               <button
                 className={`btn rounded-2xl px-8 transition-all active:scale-95 ${
                   page === 1
@@ -173,8 +173,8 @@ const Products: React.FC = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </Container>
+      <Footer />
     </div>
   );
 };
