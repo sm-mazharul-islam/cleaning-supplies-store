@@ -10,7 +10,6 @@ export const metadata = {
 };
 
 const FlashSale = async () => {
-  // ডাটা ফেচিং - ISR (Incremental Static Regeneration) ব্যবহার করা হয়েছে
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/v1/products/flash-sale`,
     {

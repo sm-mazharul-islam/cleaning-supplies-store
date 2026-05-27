@@ -38,8 +38,8 @@ const FilterProducts: React.FC<FilterProductsProps> = ({
   };
 
   return (
-    <div className="border lg:h-[800px] lg:w-[300px] card">
-      <h1 className="text-2xl text-center">Price Range</h1>
+    <div className="border border-gray-600 lg:h-[700px] lg:w-[300px] card">
+      <h1 className="text-2xl text-center mt-0 lg:mt-4">Price Range</h1>
       <div className="form-control p-10">
         <label className="label cursor-pointer">
           <input
@@ -55,7 +55,7 @@ const FilterProducts: React.FC<FilterProductsProps> = ({
             onChange={() => handlePriceChange("11-15")}
             className="checkbox"
           />
-          <span className="label-text font-bold text-xl">$11.00 - $1.00</span>
+          <span className="label-text font-bold text-xl">$11.00 - $15.00</span>
         </label>
         {/* Add more price ranges as needed */}
       </div>
