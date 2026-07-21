@@ -1,6 +1,6 @@
 # 🛡️ Cleaning Supplies Store
 
-### A Premium MERN Stack Solution for Cleaning Supplies & Stock Management_
+### _A Premium MERN Stack Solution for Cleaning Supplies & Stock Management_
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-blue?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
